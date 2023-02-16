@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bgBlack"
+    tools:context=".RegisterActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/textViewEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:layout_marginBottom="10dp"
+            android:text="Email"
+            android:textColor="@color/white"
+            android:textSize="19dp"
+
+            />
+
+        <EditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/textViewEmail"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/custominput"
+            android:hint="Írd be az email cimed"
+            android:inputType="textEmailAddress"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textColorHint="@color/grey3" />
+
+        <TextView
+            android:id="@+id/textViewPw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextEmail"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="10dp"
+            android:text="Jelszó"
+            android:textColor="@color/white"
+            android:textSize="19dp"
+
+            />
+
+        <EditText
+            android:id="@+id/editTextPw"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/textViewPw"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/custominput"
+            android:hint="Adj meg egy erős jelszót"
+            android:inputType="textPassword"
+
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textColorHint="@color/grey3" />
+
+        <TextView
+            android:id="@+id/textViewRePw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextPw"
+
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="10dp"
+            android:text="Jelszó újra"
+            android:textColor="@color/white"
+            android:textSize="19dp"
+
+            />
+
+        <EditText
+            android:id="@+id/editTextRePw"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/textViewRePw"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/custominput"
+
+            android:hint="Ismételd meg a jelszót"
+            android:inputType="textPassword"
+
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textColorHint="@color/grey3" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonRegSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextRePw"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/asd"
+            android:text="Regisztrálj"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:backgroundTint="@null"
+            app:cornerRadius="10dp" />
+    </RelativeLayout>
+
+
+</LinearLayout>
