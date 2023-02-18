@@ -5,59 +5,137 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bgBlack"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="15dp"
     tools:context=".RegisterActivity">
 
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:padding="20dp">
+        android:gravity="start"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            app:backgroundTint="@color/editTextbg"
+            app:backgroundTintMode="add"
+            app:cornerRadius="10dp"
+            app:icon="@drawable/ic_baseline_arrow_back_ios_new_24"
+            app:iconGravity="textTop"
+            app:iconSize="18dp"
+
+            app:iconTint="#c222bf" />
 
         <TextView
-            android:id="@+id/textViewEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="6dp"
-            android:layout_marginBottom="10dp"
-            android:text="Email"
+            android:layout_marginLeft="20dp"
+            android:text="Regisztráció"
             android:textColor="@color/white"
-            android:textSize="19dp"
+            android:textSize="25dp"
+            android:layout_gravity="center"
 
             />
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="6dp"
+        android:layout_marginBottom="10dp"
+        android:text="Email"
+        android:textColor="@color/white"
+        android:textSize="19dp"
+
+        />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="0dp"
+        android:textColorHint="@color/grey3"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:errorEnabled="true">
 
         <EditText
             android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_below="@id/textViewEmail"
             android:layout_marginTop="8dp"
             android:background="@drawable/custominput"
             android:hint="Írd be az email cimed"
             android:inputType="textEmailAddress"
+            android:textColor="@color/white"
+            android:textColorHint="@color/grey3"
+            android:textSize="15dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="10dp"
+        android:text="Teljes név"
+        android:textColor="@color/white"
+        android:textSize="19dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/FullNameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="0dp"
+        android:textColorHint="@color/grey3"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:errorEnabled="true">
+
+        <EditText
+            android:id="@+id/editTextFullName"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/custominput"
+            android:hint="Adj meg egy erős jelszót"
+            android:inputType="textPassword"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textColorHint="@color/grey3" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/textViewPw"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/editTextEmail"
-            android:layout_marginLeft="6dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="10dp"
-            android:text="Jelszó"
-            android:textColor="@color/white"
-            android:textSize="19dp"
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="10dp"
+        android:text="Jelszó"
+        android:textColor="@color/white"
+        android:textSize="19dp" />
 
-            />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/pwLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="0dp"
+        android:textColorHint="@color/grey3"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:errorEnabled="true"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="#c222bf">
 
         <EditText
             android:id="@+id/editTextPw"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_below="@id/textViewPw"
             android:layout_marginTop="8dp"
             android:background="@drawable/custominput"
             android:hint="Adj meg egy erős jelszót"
@@ -66,51 +144,59 @@
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textColorHint="@color/grey3" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/textViewRePw"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/editTextPw"
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="10dp"
+        android:text="Jelszó újra"
+        android:textColor="@color/white"
+        android:textSize="19sp"
 
-            android:layout_marginLeft="6dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="10dp"
-            android:text="Jelszó újra"
-            android:textColor="@color/white"
-            android:textSize="19dp"
+        />
 
-            />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/RePwLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="0dp"
+        android:textColorHint="@color/grey3"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:errorEnabled="true"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="#c222bf"
+        >
 
         <EditText
             android:id="@+id/editTextRePw"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_below="@id/textViewRePw"
             android:layout_marginTop="8dp"
             android:background="@drawable/custominput"
-
             android:hint="Ismételd meg a jelszót"
             android:inputType="textPassword"
-
+            android:paddingEnd="10dp"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textColorHint="@color/grey3" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonRegSubmit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/editTextRePw"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/asd"
-            android:text="Regisztrálj"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            app:backgroundTint="@null"
-            app:cornerRadius="10dp" />
-    </RelativeLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonRegSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/gradient"
+        android:text="Regisztrálj"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:backgroundTint="@null"
+        app:cornerRadius="10dp" />
 
 
 </LinearLayout>
