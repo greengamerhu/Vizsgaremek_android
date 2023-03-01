@@ -2,6 +2,7 @@ package hu.petrik.vizsgaremek;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -19,12 +20,16 @@ import java.io.IOException;
 public class RegisterActivity extends AppCompatActivity {
 
     private TextInputLayout emailLayout;
+    private TextInputLayout fullNameLayout;
+    private TextInputLayout pwLayout;
+    private TextInputLayout rePwLayout;
+
     private EditText editTextEmail;
     private EditText editTextPw;
     private EditText editTextRePw;
     private EditText editTextFullName;
     private Button buttonRegSubmit;
-    private String BASE_URL="http://10.0.2.2:3000/restaurant/register";
+    private String BASE_URL="http://10.0.2.2:3000/users/register";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +56,30 @@ public class RegisterActivity extends AppCompatActivity {
                 } else {
                     emailLayout.setError(null);
                 }
+                if (fullName.isEmpty()){
+                    fullNameLayout.setError("Nem lehet üres");
+                    return;
+                } else {
+                    fullNameLayout.setError(null);
+                }
+                if (pw.isEmpty()){
+                    pwLayout.setError("Nem lehet üres");
+                    return;
+                } else {
+                    emailLayout.setError(null);
+                }
+                if (rePw.isEmpty()){
+                    rePwLayout.setError("Nem lehet üres");
+                    return;
+                } else {
+                    rePwLayout.setError(null);
+                }
+                if (!rePw.equals(pw)) {
+                    rePwLayout.setError("Jelszavaknak egyezniük kell");
+                    return;
+                } else {
+                    rePwLayout.setError(null);
+                }
                 Gson json = new Gson();
                 Users newUser = new Users(email,fullName, pw,rePw);
                 RequestTask task = new RequestTask(BASE_URL,"POST",json.toJson(newUser));
@@ -61,6 +90,9 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void init() {
         emailLayout = findViewById(R.id.emailLayout);
+        fullNameLayout = findViewById(R.id.fullNameLayout);
+        pwLayout = findViewById(R.id.pwLayout);
+        rePwLayout = findViewById(R.id.rePwLayout);
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPw = findViewById(R.id.editTextPw);
         editTextRePw = findViewById(R.id.editTextRePw);
@@ -105,7 +137,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             } catch (IOException e) {
                 Toast.makeText(RegisterActivity.this,
-                        e.toString(), Toast.LENGTH_SHORT).show();
+                        e.getMessage(), Toast.LENGTH_SHORT).show();
             }
             return response;
         }
@@ -123,7 +155,8 @@ public class RegisterActivity extends AppCompatActivity {
                         response.getContent(), Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(RegisterActivity.this, "Sikeres regisztráció", Toast.LENGTH_SHORT).show();
-                // TODO: indítani kell egy login actvity-t
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
             }
             switch (requestType) {
                 case "GET":

@@ -14,11 +14,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="start"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        >
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonBackFromRegister"
             android:layout_width="40dp"
             android:layout_height="40dp"
+
             android:layout_gravity="center"
             app:backgroundTint="@color/editTextbg"
             app:backgroundTintMode="add"
@@ -27,13 +30,14 @@
             app:iconGravity="textTop"
             app:iconSize="18dp"
 
-            app:iconTint="#c222bf" />
+            app:iconTint="@color/purple" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:text="Regisztráció"
+            android:gravity=""
             android:textColor="@color/white"
             android:textSize="25dp"
             android:layout_gravity="center"
@@ -88,7 +92,7 @@
         android:textSize="19dp" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/FullNameLayout"
+        android:id="@+id/fullNameLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="0dp"
@@ -103,8 +107,8 @@
             android:layout_height="60dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/custominput"
-            android:hint="Adj meg egy erős jelszót"
-            android:inputType="textPassword"
+            android:hint="Adj meg a teljes neved"
+            android:inputType="textPersonName"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textColorHint="@color/grey3" />
@@ -130,7 +134,7 @@
         app:boxStrokeWidthFocused="0dp"
         app:errorEnabled="true"
         app:passwordToggleEnabled="true"
-        app:passwordToggleTint="#c222bf">
+        app:passwordToggleTint="@color/purple">
 
         <EditText
             android:id="@+id/editTextPw"
@@ -159,7 +163,7 @@
         />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/RePwLayout"
+        android:id="@+id/rePwLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="0dp"
@@ -168,7 +172,7 @@
         app:boxStrokeWidthFocused="0dp"
         app:errorEnabled="true"
         app:passwordToggleEnabled="true"
-        app:passwordToggleTint="#c222bf"
+        app:passwordToggleTint="@color/purple"
         >
 
         <EditText

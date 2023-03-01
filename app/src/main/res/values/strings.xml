@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Vizsgaremek</string>
+    <string name="nincs_m_g_fi_kod_regisztr_ci">Nincs még fiókod? <font color="#c222bf"> Regisztráció </font></string>
 </resources>
