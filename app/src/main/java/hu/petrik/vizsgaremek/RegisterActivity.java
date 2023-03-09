@@ -29,7 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText editTextRePw;
     private EditText editTextFullName;
     private Button buttonRegSubmit;
-    private String BASE_URL="http://10.0.2.2:3000/users/register";
+    private String BASE_URL="http://10.0.2.2:3000/user/register";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,18 +122,10 @@ public class RegisterActivity extends AppCompatActivity {
             Response response = null;
             try {
                 switch (requestType) {
-                    case "GET":
-                        response = RequestHandler.get(requestUrl);
-                        break;
                     case "POST":
-                        response = RequestHandler.post(requestUrl, requestParams);
+                        response = RequestHandler.post(requestUrl, requestParams, null);
                         break;
-                    case "PUT":
-                        response = RequestHandler.put(requestUrl, requestParams);
-                        break;
-                    case "DELETE":
-                        response = RequestHandler.delete(requestUrl + "/" + requestParams);
-                        break;
+
                 }
             } catch (IOException e) {
                 Toast.makeText(RegisterActivity.this,
@@ -158,20 +150,20 @@ public class RegisterActivity extends AppCompatActivity {
                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
-            switch (requestType) {
-                case "GET":
-
-                    break;
-                case "POST":
-
-                    break;
-                case "PUT":
-
-                    break;
-                case "DELETE":
-
-                    break;
-            }
+//            switch (requestType) {
+//                case "GET":
+//
+//                    break;
+//                case "POST":
+//
+//                    break;
+//                case "PUT":
+//
+//                    break;
+//                case "DELETE":
+//
+//                    break;
+//            }
         }
     }
 }

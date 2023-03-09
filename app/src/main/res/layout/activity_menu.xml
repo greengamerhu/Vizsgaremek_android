@@ -6,19 +6,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/bgBlack"
-    tools:context=".MainActivity"
-    android:gravity="center">
-    <TextView
+    tools:context=".MenuActivity">
+
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="szia"
-        android:textColor="@color/white"/>
+        android:text="Kijelentkezes"
+        android:id="@+id/buttonLogout"/>
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="30sp"
         android:divider="@android:color/transparent"
+        android:id="@+id/listViewMenu"
         android:dividerHeight="10sp"
-        tools:listitem="@layout/list_menu_items"/>
+        tools:listitem="@layout/list_menu_items"
+        android:paddingTop="24dp"/>
 
 </LinearLayout>

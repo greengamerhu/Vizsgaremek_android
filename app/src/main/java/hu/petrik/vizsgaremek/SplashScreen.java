@@ -3,7 +3,9 @@ package hu.petrik.vizsgaremek;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -30,11 +32,23 @@ public class SplashScreen extends AppCompatActivity {
 
 
     public void SplashScreenActivation() {
-        new Handler().postDelayed(() -> {
-            Intent intent = new Intent(SplashScreen.this, LoginActivity.class);
-            startActivity(intent);
-            finish();
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-        }, SPLASH_TIME_OUT);
-    }
+        SharedPreferences sharedPreferences = getSharedPreferences("Important", Context.MODE_PRIVATE);
+        if(sharedPreferences.getString("token","").isEmpty()) {
+            new Handler().postDelayed(() -> {
+                Intent intent = new Intent(SplashScreen.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            }, SPLASH_TIME_OUT);
+        } else {
+            new Handler().postDelayed(() -> {
+                Intent intent = new Intent(SplashScreen.this, MenuActivity.class);
+                startActivity(intent);
+                finish();
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            }, SPLASH_TIME_OUT);
+        }
+        }
+
+
 }
