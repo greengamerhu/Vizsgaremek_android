@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+     >
+    <group android:checkableBehavior="single"  >
+        <item
+            android:id="@+id/menuPage"
+            android:icon="@drawable/ic_food_menu_3_svgrepo_com"
+
+            android:title="Menű"
+
+            />
+        <item
+            android:id="@+id/profilePage"
+            android:icon="@drawable/ic_profile_svgrepo_com"
+            android:title="Profil"
+            />
+        <item
+            android:id="@+id/adressPage"
+            android:icon="@drawable/ic_shipping_fast_solid_svgrepo_com"
+
+            android:title="Száliítási adatok"
+            />
+        <item
+            android:id="@+id/logoutPage"
+            android:icon="@drawable/ic_baseline_logout_24"
+            android:title="Kijelentkezés"
+            />
+    </group>
+</menu>

@@ -54,7 +54,6 @@ public class LoginActivity extends AppCompatActivity {
                 String email = editTextLoginEmail.getText().toString().trim();
                 String pw = editTextLoginPw.getText().toString().trim();
                 Gson json = new Gson();
-
                 LoginHelper loginData = new LoginHelper(email, pw);
                 Toast.makeText(LoginActivity.this, json.toJson(loginData), Toast.LENGTH_SHORT).show();
                 RequestTask task = new RequestTask(BASE_URL, "POST", json.toJson(loginData));
@@ -125,7 +124,7 @@ public class LoginActivity extends AppCompatActivity {
                         response.getContent(), Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(LoginActivity.this, "Sikres Bejelentkezés", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }

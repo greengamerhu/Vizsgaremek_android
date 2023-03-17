@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardBackgroundColor="@color/grey2"
+    android:orientation="horizontal"
+    app:cardCornerRadius="10dp"
+    app:contentPadding="10dp">
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/textViewItemAdress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Teszt Cim 11."
+                android:textColor="@color/purple"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/textViewItemPostalCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:ellipsize="end"
+                    android:text="1111"
+                    android:textSize="18sp"
+
+                    android:textColor="@color/white" />
+                <TextView
+                    android:id="@+id/textViewItemCity"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:ellipsize="end"
+                    android:text="valahol"
+                    android:textSize="18sp"
+
+                    android:textColor="@color/white" />
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="36dp"
+                    android:background="@drawable/ic_delete_svgrepo_com"
+                    android:backgroundTint="@color/purple"
+                    android:layout_gravity="end"
+                    android:id="@+id/imgaeViewDeleteAdress"
+
+                    />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textViewItemPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="0720543534"
+                android:textColor="@color/white"
+                />
+
+        </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

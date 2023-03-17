@@ -1,6 +1,11 @@
 package hu.petrik.vizsgaremek;
 
-public class Menu {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.List;
+
+public class Menu  implements Parcelable {
     private String food_id;
     private String food_name;
     private String food_description;
@@ -53,5 +58,22 @@ public class Menu {
 
     public void setFood_price(int food_price) {
         this.food_price = food_price;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+
+    }
+}
+class MenuListHelper {
+    private List<Menu> menu;
+
+    public List<Menu> getMenus() {
+        return menu;
     }
 }

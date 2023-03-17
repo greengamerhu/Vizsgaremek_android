@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".MenuItemFragment">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/grey2"
+        app:cardCornerRadius="10dp"
+        app:contentPadding="30dp"
+        android:id="@+id/itemCardView"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/textViewShowMenuItemTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Title Goes here"
+                android:textAlignment="center"
+                android:textColor="@color/purple"
+                android:textSize="35sp"
+
+
+                />
+
+            <TextView
+                android:id="@+id/textViewShowMenuItemDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Description goes here"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+
+                />
+
+            <TextView
+                android:id="@+id/textViewShowMenuItemCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="category goes here"
+                android:textAlignment="center"
+                android:textColor="@color/grey"
+                android:textSize="20sp"
+
+                />
+
+            <TextView
+                android:id="@+id/textViewShowMenuItemPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="price goes here"
+                android:textAlignment="center"
+                android:textColor="@color/purple"
+                android:textSize="25sp"
+
+
+                />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/gradient"
+        android:text="Kosárba Teszem"
+        android:layout_below="@id/itemCardView"
+        android:textColor="@color/white"
+        app:backgroundTint="@null" />
+
+
+</RelativeLayout>

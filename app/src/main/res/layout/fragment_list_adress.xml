@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ListAddress">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textVuewAddNewAddresspls"
+        android:gravity="center"
+        android:text="Úgy néz ki nincs még felvéve cím vegyél fel egyet"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:visibility="gone"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonNewAdress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/gradient"
+        android:text="Új cím felvétele"
+        android:textSize="10sp"
+        app:backgroundTint="@null"
+        app:cornerRadius="10dp"
+        android:visibility="gone"/>
+    <ListView
+        android:id="@+id/listViewAdress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10sp"
+        android:padding="30sp"
+        android:paddingTop="24dp"
+        android:visibility="gone"
+        tools:listitem="@layout/list_adress_items" />
+
+
+</LinearLayout>
