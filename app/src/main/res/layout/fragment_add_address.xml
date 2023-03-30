@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".Add_addressFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="6dp"
+
+        android:layout_marginBottom="10dp"
+        android:text="Irányítószám"
+        android:textColor="@color/white"
+        android:textSize="19dp"
+
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/postalCodelayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="0dp"
+        android:textColorHint="@color/grey3"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:errorEnabled="true">
+
+        <EditText
+            android:id="@+id/editTextAdressPostalCode"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/custominput"
+            android:hint="Add meg az irányítóSzámod"
+            android:inputType="number"
+            android:maxLength="4"
+            android:textColor="@color/white"
+            android:textColorHint="@color/grey3"
+            android:textSize="15dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="6dp"
+
+        android:layout_marginBottom="10dp"
+        android:text="Város"
+        android:textColor="@color/white"
+        android:textSize="19dp"
+
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cityLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="0dp"
+        android:textColorHint="@color/grey3"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:errorEnabled="true">
+
+        <EditText
+            android:id="@+id/editTextAdressCity"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/custominput"
+            android:hint="Add meg az Városod nevét"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:textColorHint="@color/grey3"
+            android:textSize="15dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="6dp"
+
+        android:layout_marginBottom="10dp"
+        android:text="Cím"
+        android:textColor="@color/white"
+        android:textSize="19dp"
+
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/AdrdessLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="0dp"
+        android:textColorHint="@color/grey3"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:errorEnabled="true">
+
+        <EditText
+            android:id="@+id/editTextAdressName"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/custominput"
+            android:hint="Add meg a címed (utca+házcím)"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:textColorHint="@color/grey3"
+            android:textSize="15dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="6dp"
+
+        android:layout_marginBottom="10dp"
+        android:text="Telefonszám"
+        android:textColor="@color/white"
+        android:textSize="19dp"
+
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/phoneLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="0dp"
+        android:textColorHint="@color/grey3"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:errorEnabled="true">
+
+        <EditText
+            android:id="@+id/editTextAdressPhone"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/custominput"
+            android:hint="Add meg a telefon Számodat"
+            android:inputType="phone"
+            android:textColor="@color/white"
+            android:textColorHint="@color/grey3"
+            android:textSize="15dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonAdressSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/gradient"
+        android:text="Cím Felvétele"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:backgroundTint="@null"
+        app:cornerRadius="10dp" />
+
+
+</LinearLayout>

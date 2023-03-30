@@ -3,6 +3,8 @@ package hu.petrik.vizsgaremek;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -19,13 +21,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -89,14 +95,16 @@ public class MenuFragment extends Fragment {
             TextView textViewTitle = view.findViewById(R.id.textViewItemTitle);
             TextView textViewDescrip = view.findViewById(R.id.textViewItemDesc);
             TextView textViewPrice = view.findViewById(R.id.textViewItemPrice);
+            ImageView imageViewListMenuItems = view.findViewById(R.id.imageViewListMenuItems);
 
             Log.d("MenuAdapter", "Title: " + actualMenu.getFood_name());
             Log.d("MenuAdapter", "Description: " + actualMenu.getFood_description());
             Log.d("MenuAdapter", "Price: " + actualMenu.getFood_price());
+
+            Picasso.get().load("http://10.0.2.2:3000/burgers/burger1.png").into(imageViewListMenuItems);
             textViewTitle.setText(actualMenu.getFood_name());
             textViewDescrip.setText(actualMenu.getFood_description());
-
-            textViewPrice.setText(String.valueOf(actualMenu.getFood_price()) + " Ft");
+            textViewPrice.setText(actualMenu.getFood_price() + " Ft");
             return view;
         }
 

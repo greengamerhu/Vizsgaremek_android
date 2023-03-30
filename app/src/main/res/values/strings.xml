@@ -3,6 +3,7 @@
     <string name="nincs_m_g_fi_kod_regisztr_ci">Nincs még fiókod? <font color="#c222bf"> Regisztráció </font></string>
     <string name="Closed">closed </string>
     <string name="Open">open </string>
+    <string name="orderText">Megrendelés:  %1$s Ft</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

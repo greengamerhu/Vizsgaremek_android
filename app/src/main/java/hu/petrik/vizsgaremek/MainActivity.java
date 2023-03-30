@@ -68,14 +68,18 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.menuPage:
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new MenuFragment()).commit();
                         textViewToolBarTitle.setText("Menü");
+                        imageViewCart.setVisibility(View.VISIBLE);
+
                         break;
                     case R.id.adressPage:
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new ListAddress()).commit();
+                        imageViewCart.setVisibility(View.GONE);
                         textViewToolBarTitle.setText("Szállítási adatok");
                         break;
                     case R.id.logoutPage:
                         String logoutUrl = "http://10.0.2.2:3000/auth/logout";
                         RequestTask task1 = new RequestTask(logoutUrl, "DELETE");
+
                         task1.execute();
 
                 }
@@ -87,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new cartItemsFragment()).commit();
+                textViewToolBarTitle.setText("Kosár");
             }
         });
 
@@ -116,8 +121,9 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
 
         Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragmentContainer);
-        if (currentFragment instanceof  MenuItemFragment || currentFragment instanceof cartItemsFragment) {
+        if (currentFragment instanceof  MenuItemFragment || currentFragment instanceof cartItemsFragment ) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new MenuFragment()).commit();
+            textViewToolBarTitle.setText("Menü");
             return;
         }
 

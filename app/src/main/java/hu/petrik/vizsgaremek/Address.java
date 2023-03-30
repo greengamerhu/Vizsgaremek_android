@@ -4,14 +4,14 @@ import java.util.List;
 
 public class Address {
     private int id;
-    private String adress;
+    private String address;
     private String city;
-    private String postalCode;
+    private String  postalCode;
     private String mobileNumber;
 
-    public Address(int adress_id, String adress, String city, String postalCode, String mobileNumber) {
+    public Address(int adress_id, String address, String city, String postalCode, String mobileNumber) {
         this.id = adress_id;
-        this.adress = adress;
+        this.address = address;
         this.city = city;
         this.postalCode = postalCode;
         this.mobileNumber = mobileNumber;
@@ -25,12 +25,12 @@ public class Address {
         this.id = id;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getCity() {
@@ -41,7 +41,7 @@ public class Address {
         this.city = city;
     }
 
-    public String getPostalCode() {
+    public String  getPostalCode() {
         return postalCode;
     }
 

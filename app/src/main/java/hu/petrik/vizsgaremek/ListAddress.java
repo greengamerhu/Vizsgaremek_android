@@ -41,6 +41,16 @@ public class ListAddress extends Fragment {
         init(view);
         RequestTask task = new RequestTask(url, "GET");
         task.execute();
+        buttonNewAdress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragmentContainer, new  Add_addressFragment())
+                        .commit();
+            }
+        });
         return view;
 
     }
@@ -52,7 +62,7 @@ public class ListAddress extends Fragment {
     private class AddressAdapter extends ArrayAdapter<Address> {
 
         public AddressAdapter() {
-            super(listViewAdress.getContext(), R.layout.list_menu_items, addressList);
+            super(listViewAdress.getContext(), R.layout.list_adress_items, addressList);
         }
 
         @NonNull
@@ -73,8 +83,8 @@ public class ListAddress extends Fragment {
             String deleteUrl = "http://10.0.2.2:3000/user-adress/" + String.valueOf(actualAddress.getId());
             Log.d("deleteUrl", "getView: " + deleteUrl);
             RequestTask task = new RequestTask(deleteUrl, "DELETE");
-            textViewItemAdress.setText(actualAddress.getAdress());
-            textViewItemPostalCode.setText(actualAddress.getPostalCode());
+            textViewItemAdress.setText(actualAddress.getAddress());
+            textViewItemPostalCode.setText(String.valueOf(actualAddress.getPostalCode()));
             textViewiItemCity.setText(actualAddress.getCity());
             textViewiItemPhone.setText(actualAddress.getMobileNumber());
             imgaeViewDeleteAdress.setOnClickListener(new View.OnClickListener() {
