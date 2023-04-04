@@ -1,6 +1,9 @@
 package hu.petrik.vizsgaremek;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -20,6 +23,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 
 public class Add_addressFragment extends Fragment {
@@ -133,8 +137,13 @@ public class Add_addressFragment extends Fragment {
         @Override
         protected void onPostExecute(Response response) {
             super.onPostExecute(response);
+            Gson gson = new Gson();
             if (response.getResponseCode() >= 400) {
                 Log.d("address", "onClick: " + response.getContent());
+                ErrorFromServer error = gson.fromJson(response.getContent(), ErrorFromServer.class);
+
+                DialogBuilderHelper dialog = new DialogBuilderHelper(error, getActivity());
+                dialog.createDialog().show();
 
                 Toast.makeText(getActivity(),
                         "Hiba történt a kérés feldolgozása során" ,

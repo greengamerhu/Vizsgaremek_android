@@ -11,7 +11,6 @@ public class Menu  implements Parcelable {
     private String food_description;
     private String food_category;
     private int food_price ;
-
     public Menu(String food_id, String food_name, String food_description, String food_category, int food_price) {
         this.food_id = food_id;
         this.food_name = food_name;

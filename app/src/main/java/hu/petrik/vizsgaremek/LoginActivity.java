@@ -120,6 +120,10 @@ public class LoginActivity extends AppCompatActivity {
             Gson converter = new Gson();
 
             if (response.getResponseCode() >= 400) {
+                ErrorFromServer error = converter.fromJson(response.getContent(), ErrorFromServer.class);
+
+                DialogBuilderHelper dialog = new DialogBuilderHelper(error, LoginActivity.this);
+                dialog.createDialog().show();
                 Toast.makeText(LoginActivity.this,
                         response.getContent(), Toast.LENGTH_SHORT).show();
             } else {

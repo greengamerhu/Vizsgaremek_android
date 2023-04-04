@@ -142,7 +142,12 @@ public class RegisterActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Response response) {
             super.onPostExecute(response);
+            Gson gson = new Gson();
             if (response.getResponseCode() >= 400) {
+                ErrorFromServer error = gson.fromJson(response.getContent(), ErrorFromServer.class);
+
+                DialogBuilderHelper dialog = new DialogBuilderHelper(error, RegisterActivity.this);
+                dialog.createDialog().show();
                 Toast.makeText(RegisterActivity.this,
                         response.getContent(), Toast.LENGTH_SHORT).show();
             } else {
