@@ -13,22 +13,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="start"
-        android:orientation="horizontal"
         android:layout_gravity="center_vertical"
-        >
+        android:gravity="start"
+        android:orientation="horizontal">
 
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
             android:text="Jelentkezz be"
             android:textColor="@color/white"
-            android:textSize="25dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_marginBottom="20dp"
-            />
+            android:textSize="25dp" />
     </LinearLayout>
 
 
@@ -69,8 +67,6 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -107,28 +103,49 @@
             android:textColorHint="@color/grey3" />
     </com.google.android.material.textfield.TextInputLayout>
 
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonLoginSubmit"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/gradient"
-        android:text="Bejelentkezés"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        app:backgroundTint="@null"
-        app:cornerRadius="10dp" />
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/buttonLoginSubmit"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/gradient"
+            android:text="Bejelentkezés"
+            android:textAllCaps="false"
+
+            android:textColor="@color/white"
+            app:backgroundTint="@null"
+            app:cornerRadius="10dp" />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/loginProgress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:indeterminate="true"
+            android:visibility="gone"
+            android:progress="@integer/material_motion_duration_long_1"
+            app:indicatorColor="@color/white"
+            app:trackColor="@color/purple"
+            />
+
+
+    </FrameLayout>
+
 
     <TextView
         android:id="@+id/textViewToRegisterActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="30dp"
         android:gravity="center_vertical"
         android:text="@string/nincs_m_g_fi_kod_regisztr_ci"
-        android:textSize="15sp"
         android:textColor="@color/white"
-        android:layout_marginVertical="30dp"/>
+        android:textSize="15sp" />
 
 
 </LinearLayout>

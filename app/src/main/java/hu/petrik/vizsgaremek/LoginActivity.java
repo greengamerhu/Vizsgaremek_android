@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -24,7 +25,8 @@ public class LoginActivity extends AppCompatActivity {
     private TextView textViewToRegisterActivity;
     private EditText editTextLoginEmail;
     private EditText editTextLoginPw;
-    private Button buttonLoginSubmit;
+    private TextView buttonLoginSubmit;
+    private CircularProgressIndicator loginProgress;
 //    SharedPreferences pref = getApplicationContext().getSharedPreferences("TokenPref", 0); // 0 - for private mode
 //    SharedPreferences.Editor editor = pref.edit();
     private String BASE_URL="http://10.0.2.2:3000/auth/login";
@@ -56,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
                 Gson json = new Gson();
                 LoginHelper loginData = new LoginHelper(email, pw);
                 Toast.makeText(LoginActivity.this, json.toJson(loginData), Toast.LENGTH_SHORT).show();
+                loginProgress.setVisibility(View.VISIBLE);
                 RequestTask task = new RequestTask(BASE_URL, "POST", json.toJson(loginData));
                 task.execute();
 
@@ -68,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
         editTextLoginPw = findViewById(R.id.editTextLoginPw);
         textViewToRegisterActivity = findViewById(R.id.textViewToRegisterActivity);
         buttonLoginSubmit = findViewById(R.id.buttonLoginSubmit);
+        loginProgress =  findViewById(R.id.loginProgress);
     }
 
     @Override
@@ -124,6 +128,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 DialogBuilderHelper dialog = new DialogBuilderHelper(error, LoginActivity.this);
                 dialog.createDialog().show();
+                loginProgress.setVisibility(View.GONE);
                 Toast.makeText(LoginActivity.this,
                         response.getContent(), Toast.LENGTH_SHORT).show();
             } else {
@@ -142,6 +147,8 @@ public class LoginActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("token" , token.getToken());
                     editor.commit();
+                    loginProgress.setVisibility(View.GONE);
+
 
                     break;
                 case "PUT":
