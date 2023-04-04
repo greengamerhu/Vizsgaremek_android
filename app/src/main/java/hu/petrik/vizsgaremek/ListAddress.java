@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -149,6 +150,10 @@ public class ListAddress extends Fragment {
             Gson converter = new Gson();
             //Log.d("deleteUrl", "onPostExecute: " + response.getContent());
             if (response.getResponseCode() >= 400) {
+                converter = new GsonBuilder().registerTypeAdapter(ErrorFromServer.class, new ErrorFromServerDeserializer()).create();
+                ErrorFromServer error = converter.fromJson(response.getContent(), ErrorFromServer.class);
+                DialogBuilderHelper dialog = new DialogBuilderHelper(error, getActivity());
+                dialog.createDialog().show();
                 Toast.makeText(getActivity(),
                         "Hiba történt a kérés feldolgozása során"  + response.getContent(),
                         Toast.LENGTH_SHORT).show();

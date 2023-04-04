@@ -10,13 +10,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 
@@ -61,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
                 loginProgress.setVisibility(View.VISIBLE);
                 RequestTask task = new RequestTask(BASE_URL, "POST", json.toJson(loginData));
                 task.execute();
+                buttonLoginSubmit.setEnabled(false);
 
             }
         });
@@ -124,6 +125,7 @@ public class LoginActivity extends AppCompatActivity {
             Gson converter = new Gson();
 
             if (response.getResponseCode() >= 400) {
+                converter = new GsonBuilder().registerTypeAdapter(ErrorFromServer.class, new ErrorFromServerDeserializer()).create();
                 ErrorFromServer error = converter.fromJson(response.getContent(), ErrorFromServer.class);
 
                 DialogBuilderHelper dialog = new DialogBuilderHelper(error, LoginActivity.this);
@@ -131,6 +133,8 @@ public class LoginActivity extends AppCompatActivity {
                 loginProgress.setVisibility(View.GONE);
                 Toast.makeText(LoginActivity.this,
                         response.getContent(), Toast.LENGTH_SHORT).show();
+                buttonLoginSubmit.setEnabled(true);
+
             } else {
                 Toast.makeText(LoginActivity.this, "Sikres Bejelentkezés", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);

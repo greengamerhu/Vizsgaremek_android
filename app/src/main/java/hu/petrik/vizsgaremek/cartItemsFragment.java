@@ -37,6 +37,7 @@ public class cartItemsFragment extends Fragment {
     private List<CartItems> cartItemsList = new ArrayList<>();
     private String sumTotal;
     private MaterialButton buttonOrder;
+    private TextView textViewEmptyCart;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,6 +52,7 @@ public class cartItemsFragment extends Fragment {
     public void init(View view) {
         listViewCart = view.findViewById(R.id.listViewCart);
         buttonOrder = view.findViewById(R.id.buttonOrder);
+        textViewEmptyCart = view.findViewById(R.id.textViewEmptyCart);
 
     }
     public void addTodb(CartItems cartItem) {
@@ -81,7 +83,6 @@ public class cartItemsFragment extends Fragment {
             TextView textViewCartItemQuantity = view.findViewById(R.id.textViewCartItemQuantity);
             MaterialButton buttonCartLowerQuantity = view.findViewById(R.id.buttonCartLowerQuantity);
             MaterialButton buttonCartAddQuantity = view.findViewById(R.id.buttonCartAddQuantity);
-
             textViewCartItemTittle.setText(actualCartItem.menuItem.getFood_name());
             textViewCartItemPrice.setText(actualCartItem.total + " Ft");
             textViewCartItemDesc.setText(actualCartItem.menuItem.getFood_description());
@@ -198,15 +199,16 @@ public class cartItemsFragment extends Fragment {
                     sumTotal = cartItemListHelper.getSumTotal();
                     cartItemsList.clear();
                     cartItemsList.addAll(cartItemListHelper.getshoppingCart());
-                    for (CartItems cart : cartItemsList) {
-                        Log.d("cart", "" + cart.menuItem.getFood_name());
-
+                    if (cartItemsList.size() == 0){
+                        buttonOrder.setVisibility(View.GONE);
+                        listViewCart.setVisibility(View.GONE);
+                        textViewEmptyCart.setVisibility(View.VISIBLE);
+                        return;
                     }
                     Log.d("cart", "" + sumTotal);
                     CartItemsAdapter adapter = new CartItemsAdapter();
                     listViewCart.setAdapter(adapter);
                     buttonOrder.setText("Megrendelés: "+ Integer.parseInt(cartItemListHelper.getSumTotal()) + " Ft");
-
                     break;
 
                 case "PATCH":
