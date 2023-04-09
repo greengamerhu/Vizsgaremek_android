@@ -11,10 +11,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -25,7 +27,8 @@ public class MenuItemFragment extends Fragment {
     private TextView textViewShowMenuItemDesc;
     private TextView textViewShowMenuItemCategory;
     private TextView textViewShowMenuItemPrice;
-    private MaterialButton buttonAddToCart;
+    private TextView buttonAddToCart;
+    private CircularProgressIndicator addToCartProgress;
     private String url = "http://10.0.2.2:3000/cart";
 
 
@@ -46,6 +49,7 @@ public class MenuItemFragment extends Fragment {
             buttonAddToCart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    addToCartProgress.setVisibility(View.VISIBLE);
                     Gson gson = new Gson();
                     CartItems cartItems = new CartItems();
                     cartItems.menuItem = receivedItem;
@@ -58,11 +62,13 @@ public class MenuItemFragment extends Fragment {
         return view;
     }
 
+
     public void init(View view) {
         textViewShowMenuItemTitle = view.findViewById(R.id.textViewShowMenuItemTitle);
         textViewShowMenuItemDesc = view.findViewById(R.id.textViewShowMenuItemDesc);
         textViewShowMenuItemCategory = view.findViewById(R.id.textViewShowMenuItemCategory);
         textViewShowMenuItemPrice = view.findViewById(R.id.textViewShowMenuItemPrice);
+        addToCartProgress = view.findViewById(R.id.addToCartProgress);
         buttonAddToCart = view.findViewById(R.id.buttonAddToCart);
     }
     private class RequestTask extends AsyncTask<Void, Void, Response> {
@@ -74,6 +80,7 @@ public class MenuItemFragment extends Fragment {
             this.requestUrl = requestUrl;
             this.requestType = requestType;
         }
+
 
 
         public RequestTask(String requestUrl, String requestType, String requestParams) {
@@ -92,6 +99,7 @@ public class MenuItemFragment extends Fragment {
                         response = RequestHandler.post(requestUrl, requestParams, sharedPreferences.getString("token", null));
                 }
             } catch (IOException e) {
+                addToCartProgress.setVisibility(View.GONE);
                 Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
             }
             return response;
@@ -116,8 +124,9 @@ public class MenuItemFragment extends Fragment {
             }
             switch (requestType) {
                 case "POST":
-
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new MenuFragment()).commit();
+                    addToCartProgress.setVisibility(View.GONE);
+                getActivity().getSupportFragmentManager().beginTransaction().setCustomAnimations( R.anim.fragmentfade_in, R.anim.fragmentslide_out)
+                        .replace(R.id.fragmentContainer, new MenuFragment()).commit();
                     break;
 
 

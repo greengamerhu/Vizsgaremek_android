@@ -7,14 +7,16 @@
     app:cardBackgroundColor="@color/grey2"
     android:orientation="horizontal"
     app:cardCornerRadius="10dp"
-    app:contentPadding="10dp">
+    app:contentPadding="10dp"
+    >
 
 
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
             <TextView
                 android:id="@+id/textViewItemAdress"
                 android:layout_width="wrap_content"

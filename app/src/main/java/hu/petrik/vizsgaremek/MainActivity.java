@@ -122,7 +122,8 @@ public class MainActivity extends AppCompatActivity {
 
         Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragmentContainer);
         if (currentFragment instanceof  MenuItemFragment || currentFragment instanceof cartItemsFragment ) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new MenuFragment()).commit();
+            getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fragmentfade_in, R.anim.fragmentslide_out)
+                    .replace(R.id.fragmentContainer, new MenuFragment()).commit();
             textViewToolBarTitle.setText("Menü");
             return;
         }

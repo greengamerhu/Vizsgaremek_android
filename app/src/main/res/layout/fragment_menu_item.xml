@@ -73,16 +73,39 @@
 
     </androidx.cardview.widget.CardView>
 
-    <com.google.android.material.button.MaterialButton
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonAddToCart"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/gradient"
-        android:text="Kosárba Teszem"
-        android:layout_below="@id/itemCardView"
-        android:textColor="@color/white"
-        app:backgroundTint="@null" />
+        android:layout_below="@id/itemCardView">
+
+        <TextView
+            android:id="@+id/buttonAddToCart"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/gradient"
+            android:text="Kosárba Teszem"
+
+            android:textColor="@color/white"
+            app:backgroundTint="@null"
+            app:cornerRadius="10dp" />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/addToCartProgress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:indeterminate="true"
+            android:visibility="gone"
+            android:progress="@integer/material_motion_duration_long_1"
+            app:indicatorColor="@color/white"
+            app:trackColor="@color/purple"
+            />
+
+
+    </FrameLayout>
 
 
 </RelativeLayout>

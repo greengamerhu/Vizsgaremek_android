@@ -11,14 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -128,6 +125,15 @@ public class cartItemsFragment extends Fragment {
 
                     addTodb(actualCartItem);
 
+                }
+            });
+            buttonOrder.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    getFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragmentContainer, new ChooseAddressFragment())
+                            .commit();
                 }
             });
 

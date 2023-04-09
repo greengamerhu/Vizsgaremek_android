@@ -1,20 +1,14 @@
 package hu.petrik.vizsgaremek;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,62 +21,50 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.squareup.picasso.Picasso;
+import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
-public class MenuFragment extends Fragment {
-    private ListView listViewMenu;
-    public List<Menu> menuList = new ArrayList<>();
-    private String url = "http://10.0.2.2:3000/menu";
-
-
+public class ChooseAddressFragment extends Fragment {
+    private String url = "http://10.0.2.2:3000/user-adress";
+    private ListView listViewchooseAddress;
+    private List<Address> addressList = new ArrayList<>();
+    private TextView textViewToolBarTitle;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_menu, container, false);
+        View view = inflater.inflate(R.layout.fragment_choose_address, container, false);
         init(view);
         RequestTask task = new RequestTask(url, "GET");
         task.execute();
-        listViewMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listViewchooseAddress.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
-                MenuItemFragment itemFragment = new MenuItemFragment();
-                Menu menuItem = (Menu) parent.getItemAtPosition(position);
+                placeOrderFragment itemFragment = new placeOrderFragment();
+                Address address = (Address) parent.getItemAtPosition(position);
                 Bundle bundle = new Bundle();
-                bundle.putParcelable("menuItem",  menuItem);
+                bundle.putParcelable("choosenAddress",  address);
                 itemFragment.setArguments(bundle);
                 getFragmentManager()
                         .beginTransaction()
                         .setCustomAnimations(R.anim.fragmentslide_in,R.anim.fragnentfade_out, R.anim.fragmentfade_in, R.anim.fragmentslide_out)
                         .replace(R.id.fragmentContainer, itemFragment)
                         .commit();
-                Toast.makeText(getActivity(), "" + menuItem.getFood_name(), Toast.LENGTH_SHORT).show();
             }
         });
         return view;
-
     }
 
-    public void init(View view){
-        listViewMenu = view.findViewById(R.id.listViewMenu);
-//        recyclerView = view.findViewById(R.id.menuRecyclerView);
-        Toast.makeText(getActivity(), "szia", Toast.LENGTH_SHORT).show();
-
+    public void init(View view) {
+        listViewchooseAddress = view.findViewById(R.id.listViewchooseAddress);
     }
+    private class AddressAdapter extends ArrayAdapter<Address> {
 
-    private class MenuAdapter extends ArrayAdapter<Menu> {
-
-        public MenuAdapter() {
-            super(listViewMenu.getContext(), R.layout.list_menu_items, menuList);
-
-
+        public AddressAdapter() {
+            super(listViewchooseAddress.getContext(), R.layout.list_adress_items, addressList);
         }
 
         @NonNull
@@ -91,28 +73,24 @@ public class MenuFragment extends Fragment {
 
             LayoutInflater layoutInflater = getLayoutInflater();
 
-            View view = layoutInflater.inflate(R.layout.list_menu_items, null, false);
-            Menu actualMenu = menuList.get(position);
-            TextView textViewTitle = view.findViewById(R.id.textViewItemTitle);
-            TextView textViewDescrip = view.findViewById(R.id.textViewItemDesc);
-            TextView textViewPrice = view.findViewById(R.id.textViewItemPrice);
-            ImageView imageViewListMenuItems = view.findViewById(R.id.imageViewListMenuItems);
+            View view = layoutInflater.inflate(R.layout.list_adress_items, null, false);
+            Address actualAddress = addressList.get(position);
+            Log.d("address", "getView: " + actualAddress.getId());
+            TextView textViewItemAdress = view.findViewById(R.id.textViewItemAdress);
+            TextView textViewItemPostalCode = view.findViewById(R.id.textViewItemPostalCode);
+            TextView textViewiItemCity = view.findViewById(R.id.textViewItemCity);
+            TextView textViewiItemPhone = view.findViewById(R.id.textViewItemPhone);
+            ImageView imgaeViewDeleteAdress = view.findViewById(R.id.imgaeViewDeleteAdress);
+            imgaeViewDeleteAdress.setVisibility(View.GONE);
+            textViewItemAdress.setText(actualAddress.getAddress());
+            textViewItemPostalCode.setText(String.valueOf(actualAddress.getPostalCode()));
+            textViewiItemCity.setText(actualAddress.getCity());
+            textViewiItemPhone.setText(actualAddress.getMobileNumber());
 
-            Log.d("MenuAdapter", "Title: " + actualMenu.getFood_name());
-            Log.d("MenuAdapter", "Description: " + actualMenu.getFood_description());
-            Log.d("MenuAdapter", "Price: " + actualMenu.getFood_price());
-
-            Picasso.get().load("http://10.0.2.2:3000/burgers/pulled_pork.jpg").into(imageViewListMenuItems);
-            textViewTitle.setText(actualMenu.getFood_name());
-            textViewDescrip.setText(actualMenu.getFood_description());
-            textViewPrice.setText(actualMenu.getFood_price() + " Ft");
             return view;
         }
 
-        }
-
-
-
+    }
     private class RequestTask extends AsyncTask<Void, Void, Response> {
         String requestUrl;
         String requestType;
@@ -133,10 +111,12 @@ public class MenuFragment extends Fragment {
         @Override
         protected Response doInBackground(Void... voids) {
             Response response = null;
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("Important", Context.MODE_PRIVATE);
+
             try {
                 switch (requestType) {
                     case "GET":
-                        response = RequestHandler.get(requestUrl, null);
+                        response = RequestHandler.get(requestUrl, sharedPreferences.getString("token", null));
                         break;
                 }
             } catch (IOException e) {
@@ -156,29 +136,29 @@ public class MenuFragment extends Fragment {
         protected void onPostExecute(Response response) {
             super.onPostExecute(response);
             Gson converter = new Gson();
-            Log.d("responeGet", "" + response.getContent());
+            //Log.d("deleteUrl", "onPostExecute: " + response.getContent());
             if (response.getResponseCode() >= 400) {
+                converter = new GsonBuilder().registerTypeAdapter(ErrorFromServer.class, new ErrorFromServerDeserializer()).create();
+                ErrorFromServer error = converter.fromJson(response.getContent(), ErrorFromServer.class);
+                DialogBuilderHelper dialog = new DialogBuilderHelper(error, getActivity());
+                dialog.createDialog().show();
                 Toast.makeText(getActivity(),
-                        "Hiba történt a kérés feldolgozása során",
+                        "Hiba történt a kérés feldolgozása során"  + response.getContent(),
                         Toast.LENGTH_SHORT).show();
             }
             switch (requestType) {
                 case "GET":
-                    MenuListHelper menuListHelper = converter.fromJson(response.getContent(), MenuListHelper.class);
-                    menuList.clear();
-                    menuList.addAll(menuListHelper.getMenus());
-                    for (Menu m : menuList) {
-                        Log.d("MenuAdapter", "" + m.getFood_name());
+                    AddressListHelper addressListHelper = converter.fromJson(response.getContent(), AddressListHelper.class);
+                    addressList.clear();
+                    addressList.addAll(addressListHelper.getAddresses());
 
-                    }
 
-                    MenuAdapter adapter = new MenuAdapter();
-                    listViewMenu.setAdapter(adapter);
+                    AddressAdapter adapter = new AddressAdapter();
+                    listViewchooseAddress.setAdapter(adapter);
                     break;
 
-
-
             }
+
 
         }
     }

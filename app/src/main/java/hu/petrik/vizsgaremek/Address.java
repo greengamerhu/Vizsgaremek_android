@@ -1,8 +1,11 @@
 package hu.petrik.vizsgaremek;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
-public class Address {
+public class Address implements Parcelable {
     private int id;
     private String address;
     private String city;
@@ -55,6 +58,16 @@ public class Address {
 
     public void setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+
     }
 }
 class AddressListHelper {
