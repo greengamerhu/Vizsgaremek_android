@@ -40,7 +40,7 @@
         >
 
     <TextView
-        android:id="@+id/buttonAddToCart"
+        android:id="@+id/buttonPlaceOrder"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

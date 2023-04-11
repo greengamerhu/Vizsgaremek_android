@@ -34,6 +34,7 @@ public class placeOrderFragment extends Fragment {
     private List<CartItems> orderItemsList = new ArrayList<>();
     private TextView textViewOrderSummary;
     final private String  url = "http://10.0.2.2:3000/cart";
+    private TextView buttonPlaceOrder;
 
 
 
@@ -50,13 +51,21 @@ public class placeOrderFragment extends Fragment {
         } else {
             Toast.makeText(getActivity(), "Hiba", Toast.LENGTH_SHORT).show();
         }
+        buttonPlaceOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                buttonPlaceOrder.setEnabled(false);
+                Toast.makeText(getActivity(), "asd", Toast.LENGTH_SHORT).show();
+            }
+        });
         return view;
     }
 
     public void init(View view) {
-
         listViewOrderSummary = view.findViewById(R.id.listViewOrderSummary);
         textViewOrderSummary = view.findViewById(R.id.textViewOrderSummary);
+        buttonPlaceOrder = view.findViewById(R.id.buttonPlaceOrder);
     }
     public static void setListViewHeightBasedOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
