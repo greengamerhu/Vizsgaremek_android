@@ -102,7 +102,7 @@ public class MenuFragment extends Fragment {
             Log.d("MenuAdapter", "Description: " + actualMenu.getFood_description());
             Log.d("MenuAdapter", "Price: " + actualMenu.getFood_price());
 
-            Picasso.get().load("http://10.0.2.2:3000/burgers/pulled_pork.jpg").into(imageViewListMenuItems);
+            Picasso.get().load("http://10.0.2.2:3000/burgers/" + actualMenu.getFood_image()).into(imageViewListMenuItems);
             textViewTitle.setText(actualMenu.getFood_name());
             textViewDescrip.setText(actualMenu.getFood_description());
             textViewPrice.setText(actualMenu.getFood_price() + " Ft");

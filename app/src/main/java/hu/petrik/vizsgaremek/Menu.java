@@ -11,12 +11,16 @@ public class Menu  implements Parcelable {
     private String food_description;
     private String food_category;
     private int food_price ;
-    public Menu(String food_id, String food_name, String food_description, String food_category, int food_price) {
+    private String food_image;
+
+
+    public Menu(String food_id, String food_name, String food_description, String food_category, int food_price, String food_image) {
         this.food_id = food_id;
         this.food_name = food_name;
         this.food_description = food_description;
         this.food_category = food_category;
         this.food_price = food_price;
+        this.food_image = food_image;
     }
 
     public String getFood_id() {
@@ -57,6 +61,13 @@ public class Menu  implements Parcelable {
 
     public void setFood_price(int food_price) {
         this.food_price = food_price;
+    }
+    public String getFood_image() {
+        return food_image;
+    }
+
+    public void setFood_image(String food_image) {
+        this.food_image = food_image;
     }
 
     @Override
