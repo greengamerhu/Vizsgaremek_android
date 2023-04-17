@@ -1,5 +1,6 @@
 package hu.petrik.vizsgaremek;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -140,7 +142,13 @@ public class MenuFragment extends Fragment {
                         break;
                 }
             } catch (IOException e) {
-                Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
             }
             return response;
         }
@@ -156,11 +164,18 @@ public class MenuFragment extends Fragment {
         protected void onPostExecute(Response response) {
             super.onPostExecute(response);
             Gson converter = new Gson();
-            Log.d("responeGet", "" + response.getContent());
+            if (response == null) {
+                DialogBuilderHelper builderHelper = new DialogBuilderHelper(getActivity());
+                Dialog dialog = builderHelper.createServerErrorDialog();
+                dialog.show();
+                return;
+            }
             if (response.getResponseCode() >= 400) {
-                Toast.makeText(getActivity(),
-                        "Hiba történt a kérés feldolgozása során",
-                        Toast.LENGTH_SHORT).show();
+                converter = new GsonBuilder().registerTypeAdapter(ErrorFromServer.class, new ErrorFromServerDeserializer()).create();
+                ErrorFromServer error = converter.fromJson(response.getContent(), ErrorFromServer.class);
+
+                DialogBuilderHelper dialog = new DialogBuilderHelper(error, getActivity());
+                dialog.createDialog().show();
             }
             switch (requestType) {
                 case "GET":

@@ -144,15 +144,11 @@ public class Add_addressFragment extends Fragment {
 
                 DialogBuilderHelper dialog = new DialogBuilderHelper(error, getActivity());
                 dialog.createDialog().show();
-
-                Toast.makeText(getActivity(),
-                        "Hiba történt a kérés feldolgozása során" ,
-                        Toast.LENGTH_SHORT).show();
             }
             switch (requestType) {
-
                 case "POST":
-
+                    getActivity().getSupportFragmentManager().beginTransaction().setCustomAnimations( R.anim.fragmentfade_in, R.anim.fragmentslide_out)
+                            .replace(R.id.fragmentContainer, new ListAddress()).commit();
                     break;
 
             }

@@ -17,6 +17,9 @@ public class DialogBuilderHelper {
         this.error = error;
         this.currentActivity = currentActivity;
     }
+    public DialogBuilderHelper(Activity currentActivity) {
+        this.currentActivity = currentActivity;
+    }
 
     public Dialog createDialog() {
         Dialog dialog = new Dialog(currentActivity);
@@ -65,7 +68,7 @@ public class DialogBuilderHelper {
         });
         title.setText("hiba");
         statusCode.setText("");
-        message.setText("Probléma lépett fel a szerverrel Vagy ellenőrizd az internet kapocsolatodat\n");
+        message.setText("Probléma lépett fel a szerverrel vagy ellenőrizd az internet kapocsolatodat\n");
 
         dialog.create();
         return dialog;

@@ -22,7 +22,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="center">
-
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="400px"
+                android:id="@+id/imageViewShowItemImg"/>
             <TextView
                 android:id="@+id/textViewShowMenuItemTitle"
                 android:layout_width="match_parent"

@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 
@@ -28,6 +30,7 @@ public class MenuItemFragment extends Fragment {
     private TextView textViewShowMenuItemCategory;
     private TextView textViewShowMenuItemPrice;
     private TextView buttonAddToCart;
+    private ImageView imageViewShowItemImg;
     private CircularProgressIndicator addToCartProgress;
     private String url = "http://10.0.2.2:3000/cart";
 
@@ -42,10 +45,12 @@ public class MenuItemFragment extends Fragment {
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             Menu receivedItem = bundle.getParcelable("menuItem"); // Key
+            Picasso.get().load("http://10.0.2.2:3000/burgers/" + receivedItem.getFood_image()).into(imageViewShowItemImg);
             textViewShowMenuItemTitle.setText(receivedItem.getFood_name());
             textViewShowMenuItemDesc.setText(receivedItem.getFood_description());
             textViewShowMenuItemCategory.setText(receivedItem.getFood_category());
             textViewShowMenuItemPrice.setText(String.valueOf(receivedItem.getFood_price()) + " Ft");
+
             buttonAddToCart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -70,6 +75,7 @@ public class MenuItemFragment extends Fragment {
         textViewShowMenuItemPrice = view.findViewById(R.id.textViewShowMenuItemPrice);
         addToCartProgress = view.findViewById(R.id.addToCartProgress);
         buttonAddToCart = view.findViewById(R.id.buttonAddToCart);
+        imageViewShowItemImg = view.findViewById(R.id.imageViewShowItemImg);
     }
     private class RequestTask extends AsyncTask<Void, Void, Response> {
         String requestUrl;

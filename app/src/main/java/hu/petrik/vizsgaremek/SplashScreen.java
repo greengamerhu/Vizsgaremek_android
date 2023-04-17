@@ -71,7 +71,14 @@ public class SplashScreen extends AppCompatActivity {
 
                 }
             } catch (IOException e) {
-                Log.d("connectionError", "doInBackground:" + e.getMessage());
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(SplashScreen.this,
+                                e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
 
             }
             return response;
@@ -86,11 +93,10 @@ public class SplashScreen extends AppCompatActivity {
         protected void onPostExecute(Response response) {
             super.onPostExecute(response);
             Gson converter = new Gson();
-            Log.d("response", "onPostExecute: "+ responsecode);
             if (response == null) {
-                DialogBuilderHelper dialog = new DialogBuilderHelper(new ErrorFromServer(), SplashScreen.this);
-                Dialog dialog1 = dialog.createServerErrorDialog();
-                dialog1.show();
+                DialogBuilderHelper builderHelper = new DialogBuilderHelper(SplashScreen.this);
+                Dialog dialog = builderHelper.createServerErrorDialog();
+                dialog.show();
                 return;
             }
             if(response.getResponseCode() == 401) {
