@@ -65,7 +65,7 @@ public class DialogBuilderHelper {
         });
         title.setText("hiba");
         statusCode.setText("");
-        message.setText("Probléma lépett fel a szerverrel Vagy ellenőrizd az inernetkapocsolatodat\n");
+        message.setText("Probléma lépett fel a szerverrel Vagy ellenőrizd az internet kapocsolatodat\n");
 
         dialog.create();
         return dialog;
