@@ -1,5 +1,6 @@
 package hu.petrik.vizsgaremek;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -132,7 +133,13 @@ public class ListAddress extends Fragment {
                         break;
                 }
             } catch (IOException e) {
-                Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getActivity(),
+                                e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
             return response;
         }
@@ -149,14 +156,17 @@ public class ListAddress extends Fragment {
             super.onPostExecute(response);
             Gson converter = new Gson();
             //Log.d("deleteUrl", "onPostExecute: " + response.getContent());
+            if (response == null) {
+                DialogBuilderHelper builderHelper = new DialogBuilderHelper(getActivity());
+                Dialog dialog = builderHelper.createServerErrorDialog();
+                dialog.show();
+                return;
+            }
             if (response.getResponseCode() >= 400) {
                 converter = new GsonBuilder().registerTypeAdapter(ErrorFromServer.class, new ErrorFromServerDeserializer()).create();
                 ErrorFromServer error = converter.fromJson(response.getContent(), ErrorFromServer.class);
                 DialogBuilderHelper dialog = new DialogBuilderHelper(error, getActivity());
                 dialog.createDialog().show();
-                Toast.makeText(getActivity(),
-                        "Hiba történt a kérés feldolgozása során"  + response.getContent(),
-                        Toast.LENGTH_SHORT).show();
             }
             switch (requestType) {
                 case "GET":

@@ -124,7 +124,13 @@ public class Add_addressFragment extends Fragment {
 
                 }
             } catch (IOException e) {
-                Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getActivity(),
+                                e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
             return response;
         }
@@ -139,7 +145,6 @@ public class Add_addressFragment extends Fragment {
             super.onPostExecute(response);
             Gson gson = new Gson();
             if (response.getResponseCode() >= 400) {
-                Log.d("address", "onClick: " + response.getContent());
                 ErrorFromServer error = gson.fromJson(response.getContent(), ErrorFromServer.class);
 
                 DialogBuilderHelper dialog = new DialogBuilderHelper(error, getActivity());

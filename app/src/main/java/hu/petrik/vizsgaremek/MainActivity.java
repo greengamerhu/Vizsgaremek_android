@@ -8,6 +8,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,6 +28,7 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -159,7 +161,13 @@ public class MainActivity extends AppCompatActivity {
                         break;
                 }
             } catch (IOException e) {
-                Toast.makeText(MainActivity.this, e.toString() + "", Toast.LENGTH_SHORT).show();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(MainActivity.this,
+                                e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
             return response;
         }
@@ -176,9 +184,17 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(response);
 //            progressBar.setVisibility(View.GONE);
             Gson converter = new Gson();
-            Log.d("responeGet", "" + response.getContent());
+            if (response == null) {
+                DialogBuilderHelper builderHelper = new DialogBuilderHelper(MainActivity.this);
+                Dialog dialog = builderHelper.createServerErrorDialog();
+                dialog.show();
+                return;
+            }
             if (response.getResponseCode() >= 400) {
-                Toast.makeText(MainActivity.this, "Hiba történt a kérés feldolgozása során", Toast.LENGTH_SHORT).show();
+                converter = new GsonBuilder().registerTypeAdapter(ErrorFromServer.class, new ErrorFromServerDeserializer()).create();
+                ErrorFromServer error = converter.fromJson(response.getContent(), ErrorFromServer.class);
+                DialogBuilderHelper dialog = new DialogBuilderHelper(error, MainActivity.this);
+                dialog.createDialog().show();
             }
             switch (requestType) {
                 case "DELETE":

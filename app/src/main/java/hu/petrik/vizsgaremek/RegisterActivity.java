@@ -2,6 +2,7 @@ package hu.petrik.vizsgaremek;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -128,8 +129,13 @@ public class RegisterActivity extends AppCompatActivity {
 
                 }
             } catch (IOException e) {
-                Toast.makeText(RegisterActivity.this,
-                        e.getMessage(), Toast.LENGTH_SHORT).show();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(RegisterActivity.this,
+                                e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
             return response;
         }
@@ -143,6 +149,12 @@ public class RegisterActivity extends AppCompatActivity {
         protected void onPostExecute(Response response) {
             super.onPostExecute(response);
             Gson gson = new Gson();
+            if (response == null) {
+                DialogBuilderHelper builderHelper = new DialogBuilderHelper(RegisterActivity.this);
+                Dialog dialog = builderHelper.createServerErrorDialog();
+                dialog.show();
+                return;
+            }
             if (response.getResponseCode() >= 400) {
                 ErrorFromServer error = gson.fromJson(response.getContent(), ErrorFromServer.class);
 

@@ -123,6 +123,12 @@ public class LoginActivity extends AppCompatActivity {
         protected void onPostExecute(Response response) {
             super.onPostExecute(response);
             Gson converter = new Gson();
+            if (response.getResponseCode() >= 400) {
+                converter = new GsonBuilder().registerTypeAdapter(ErrorFromServer.class, new ErrorFromServerDeserializer()).create();
+                ErrorFromServer error = converter.fromJson(response.getContent(), ErrorFromServer.class);
+                DialogBuilderHelper dialog = new DialogBuilderHelper(error, LoginActivity.this);
+                dialog.createDialog().show();
+            }
 
             if (response.getResponseCode() >= 400) {
                 converter = new GsonBuilder().registerTypeAdapter(ErrorFromServer.class, new ErrorFromServerDeserializer()).create();
