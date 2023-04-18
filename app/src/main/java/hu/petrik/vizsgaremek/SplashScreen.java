@@ -16,6 +16,7 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.pranavpandey.android.dynamic.toasts.DynamicToast;
 
 import java.io.IOException;
 
@@ -124,6 +125,8 @@ public class SplashScreen extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("Important", Context.MODE_PRIVATE);
         if (sharedPreferences.getString("token", "").isEmpty()) {
             new Handler().postDelayed(() -> {
+                DynamicToast.makeError(getApplicationContext(), "Sikertelen Bejelentkezés", Toast.LENGTH_SHORT).show();
+
                 Intent intent = new Intent(SplashScreen.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
@@ -131,6 +134,7 @@ public class SplashScreen extends AppCompatActivity {
             }, SPLASH_TIME_OUT);
         } else {
             new Handler().postDelayed(() -> {
+                DynamicToast.makeSuccess(getApplicationContext(), "Sikeres Bejelentkezés", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(SplashScreen.this, MainActivity.class);
                 startActivity(intent);
                 finish();

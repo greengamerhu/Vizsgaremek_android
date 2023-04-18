@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.pranavpandey.android.dynamic.toasts.DynamicToast;
 
 import java.io.IOException;
 
@@ -57,7 +58,6 @@ public class LoginActivity extends AppCompatActivity {
                 String pw = editTextLoginPw.getText().toString().trim();
                 Gson json = new Gson();
                 LoginHelper loginData = new LoginHelper(email, pw);
-                Toast.makeText(LoginActivity.this, json.toJson(loginData), Toast.LENGTH_SHORT).show();
                 loginProgress.setVisibility(View.VISIBLE);
                 RequestTask task = new RequestTask(BASE_URL, "POST", json.toJson(loginData));
                 task.execute();
@@ -137,12 +137,10 @@ public class LoginActivity extends AppCompatActivity {
                 DialogBuilderHelper dialog = new DialogBuilderHelper(error, LoginActivity.this);
                 dialog.createDialog().show();
                 loginProgress.setVisibility(View.GONE);
-                Toast.makeText(LoginActivity.this,
-                        response.getContent(), Toast.LENGTH_SHORT).show();
                 buttonLoginSubmit.setEnabled(true);
 
             } else {
-                Toast.makeText(LoginActivity.this, "Sikres Bejelentkezés", Toast.LENGTH_SHORT).show();
+                DynamicToast.makeSuccess(LoginActivity.this, "Sikres Bejelentkezés", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();

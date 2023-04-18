@@ -17,11 +17,14 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.pranavpandey.android.dynamic.toasts.DynamicToast;
 
 import org.w3c.dom.Text;
 
@@ -36,8 +39,11 @@ public class placeOrderFragment extends Fragment {
     private List<CartItems> orderItemsList = new ArrayList<>();
     private TextView textViewOrderSummary;
     final private String  url = "http://10.0.2.2:3000/cart";
+    final private String  placeOrderUrl = "http://10.0.2.2:3000/order/placeOrder";
     private TextView buttonPlaceOrder;
+    private TextView textViewToolBarTitle;
 
+    private CircularProgressIndicator placeOrderProgress;
 
 
     @Override
@@ -45,8 +51,10 @@ public class placeOrderFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_place_order, container, false);
         init(view);
+        Gson converter = new Gson();
         RequestTask task = new RequestTask(url, "GET");
         task.execute();
+
         Bundle bundle = this.getArguments();
         if (bundle != null) {
              recivedAddress= bundle.getParcelable("choosenAddress");
@@ -56,18 +64,24 @@ public class placeOrderFragment extends Fragment {
         buttonPlaceOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                placeOrderProgress.setVisibility(View.VISIBLE);
                 buttonPlaceOrder.setEnabled(false);
-                Toast.makeText(getActivity(), "asd", Toast.LENGTH_SHORT).show();
+                String json = "{\"selectedAddress\" :" + converter.toJson(recivedAddress) + "}";
+                System.out.println(json);
+                RequestTask placeOrderTask = new RequestTask(placeOrderUrl, "POST",  json );
+                placeOrderTask.execute();
             }
         });
         return view;
     }
 
     public void init(View view) {
+        textViewToolBarTitle = getActivity().findViewById(R.id.textViewToolBarTitle);
+        textViewToolBarTitle.setText("Összegzés");
         listViewOrderSummary = view.findViewById(R.id.listViewOrderSummary);
         textViewOrderSummary = view.findViewById(R.id.textViewOrderSummary);
         buttonPlaceOrder = view.findViewById(R.id.buttonPlaceOrder);
+        placeOrderProgress = view.findViewById(R.id.placeOrderProgress);
     }
     public static void setListViewHeightBasedOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
@@ -142,6 +156,9 @@ public class placeOrderFragment extends Fragment {
                     case "GET":
                         response = RequestHandler.get(requestUrl, sharedPreferences.getString("token", null));
                         break;
+                    case "POST":
+                        response = RequestHandler.post(requestUrl, requestParams, sharedPreferences.getString("token", null));
+                        break;
                     case "PATCH":
                         response = RequestHandler.put(requestUrl, requestParams, sharedPreferences.getString("token", null));
                         break;
@@ -153,6 +170,7 @@ public class placeOrderFragment extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        placeOrderProgress.setVisibility(View.GONE);
                         Toast.makeText(getActivity(),
                                 e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -173,17 +191,22 @@ public class placeOrderFragment extends Fragment {
             super.onPostExecute(response);
             Gson converter = new Gson();
             if (response == null) {
+                placeOrderProgress.setVisibility(View.GONE);
+
                 DialogBuilderHelper builderHelper = new DialogBuilderHelper(getActivity());
                 Dialog dialog = builderHelper.createServerErrorDialog();
                 dialog.show();
                 return;
             }
             if (response.getResponseCode() >= 400) {
+                placeOrderProgress.setVisibility(View.GONE);
+
                 converter = new GsonBuilder().registerTypeAdapter(ErrorFromServer.class, new ErrorFromServerDeserializer()).create();
                 ErrorFromServer error = converter.fromJson(response.getContent(), ErrorFromServer.class);
 
                 DialogBuilderHelper dialog = new DialogBuilderHelper(error, getActivity());
                 dialog.createDialog().show();
+                DynamicToast.makeError(getActivity(), "Sikertelen Rendelés").show();
             }
             switch (requestType) {
                 case "GET":
@@ -197,6 +220,19 @@ public class placeOrderFragment extends Fragment {
                     setListViewHeightBasedOnChildren(listViewOrderSummary);
                     listViewOrderSummary.setScrollContainer(false);
                     textViewOrderSummary.setText("Összesen: " + sumTotal + " Ft");
+                    break;
+                case "POST":
+                    getFragmentManager()
+                            .beginTransaction()
+                            .setCustomAnimations(R.anim.fragmentslide_in,R.anim.fragnentfade_out, R.anim.fragmentfade_in, R.anim.fragmentslide_out)
+                            .replace(R.id.fragmentContainer, new MenuFragment())
+                            .commit();
+                    if(response.getResponseCode() == 201) {
+                        DynamicToast.makeSuccess(getActivity(), "Sikeresen Leadtad a rendelésed").show();
+                    }
+
+                    placeOrderProgress.setVisibility(View.GONE);
+
                     break;
 
             }

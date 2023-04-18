@@ -2,6 +2,7 @@ package hu.petrik.vizsgaremek;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.pranavpandey.android.dynamic.toasts.DynamicToast;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -142,12 +144,17 @@ public class MenuItemFragment extends Fragment {
 
                 DialogBuilderHelper dialog = new DialogBuilderHelper(error, getActivity());
                 dialog.createDialog().show();
+                DynamicToast.makeError(getActivity(), "Kosárhoz adás sikertelen").show();
+
             }
             switch (requestType) {
                 case "POST":
                     addToCartProgress.setVisibility(View.GONE);
                 getActivity().getSupportFragmentManager().beginTransaction().setCustomAnimations( R.anim.fragmentfade_in, R.anim.fragmentslide_out)
                         .replace(R.id.fragmentContainer, new MenuFragment()).commit();
+                    if(response.getResponseCode() == 201) {
+                        DynamicToast.makeSuccess(getActivity(), "Kosárba helyezve").show();
+                    }
                     break;
 
 

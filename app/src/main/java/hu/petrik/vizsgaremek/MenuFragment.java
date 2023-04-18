@@ -43,6 +43,8 @@ public class MenuFragment extends Fragment {
     private ListView listViewMenu;
     public List<Menu> menuList = new ArrayList<>();
     private String url = "http://10.0.2.2:3000/menu";
+    private TextView textViewToolBarTitle;
+
 
 
     @Override
@@ -65,7 +67,6 @@ public class MenuFragment extends Fragment {
                         .setCustomAnimations(R.anim.fragmentslide_in,R.anim.fragnentfade_out, R.anim.fragmentfade_in, R.anim.fragmentslide_out)
                         .replace(R.id.fragmentContainer, itemFragment)
                         .commit();
-                Toast.makeText(getActivity(), "" + menuItem.getFood_name(), Toast.LENGTH_SHORT).show();
             }
         });
         return view;
@@ -73,9 +74,9 @@ public class MenuFragment extends Fragment {
     }
 
     public void init(View view){
+        textViewToolBarTitle = getActivity().findViewById(R.id.textViewToolBarTitle);
+        textViewToolBarTitle.setText("Menü");
         listViewMenu = view.findViewById(R.id.listViewMenu);
-//        recyclerView = view.findViewById(R.id.menuRecyclerView);
-        Toast.makeText(getActivity(), "szia", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -182,10 +183,7 @@ public class MenuFragment extends Fragment {
                     MenuListHelper menuListHelper = converter.fromJson(response.getContent(), MenuListHelper.class);
                     menuList.clear();
                     menuList.addAll(menuListHelper.getMenus());
-                    for (Menu m : menuList) {
-                        Log.d("MenuAdapter", "" + m.getFood_name());
 
-                    }
 
                     MenuAdapter adapter = new MenuAdapter();
                     listViewMenu.setAdapter(adapter);

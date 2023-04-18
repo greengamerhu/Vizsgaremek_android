@@ -133,6 +133,7 @@ public class cartItemsFragment extends Fragment {
                 public void onClick(View view) {
                     getFragmentManager()
                             .beginTransaction()
+                            .setCustomAnimations(R.anim.fragmentslide_in,R.anim.fragnentfade_out, R.anim.fragmentfade_in, R.anim.fragmentslide_out)
                             .replace(R.id.fragmentContainer, new ChooseAddressFragment())
                             .commit();
                 }

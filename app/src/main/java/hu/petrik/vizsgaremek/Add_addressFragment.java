@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
+import com.pranavpandey.android.dynamic.toasts.DynamicToast;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -154,6 +155,10 @@ public class Add_addressFragment extends Fragment {
                 case "POST":
                     getActivity().getSupportFragmentManager().beginTransaction().setCustomAnimations( R.anim.fragmentfade_in, R.anim.fragmentslide_out)
                             .replace(R.id.fragmentContainer, new ListAddress()).commit();
+                    if(response.getResponseCode() == 201) {
+                        DynamicToast.makeSuccess(getActivity(), "Cím felvétel sikeres").show();
+
+                    }
                     break;
 
             }

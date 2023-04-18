@@ -1,5 +1,6 @@
 package hu.petrik.vizsgaremek;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +35,9 @@ public class ChooseAddressFragment extends Fragment {
     private String url = "http://10.0.2.2:3000/user-adress";
     private ListView listViewchooseAddress;
     private List<Address> addressList = new ArrayList<>();
+    private TextView textViewAdressChoice;
     private TextView textViewToolBarTitle;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,6 +45,8 @@ public class ChooseAddressFragment extends Fragment {
         init(view);
         RequestTask task = new RequestTask(url, "GET");
         task.execute();
+
+
         listViewchooseAddress.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
@@ -60,7 +66,10 @@ public class ChooseAddressFragment extends Fragment {
     }
 
     public void init(View view) {
+        textViewToolBarTitle = getActivity().findViewById(R.id.textViewToolBarTitle);
         listViewchooseAddress = view.findViewById(R.id.listViewchooseAddress);
+        textViewAdressChoice = view.findViewById(R.id.textViewAdressChoice);
+       textViewToolBarTitle.setText("Válassz");
     }
     private class AddressAdapter extends ArrayAdapter<Address> {
 
@@ -162,7 +171,11 @@ public class ChooseAddressFragment extends Fragment {
                     addressList.clear();
                     addressList.addAll(addressListHelper.getAddresses());
 
-
+                    if (addressList.size() == 0) {
+                        textViewAdressChoice.setText("Még nem vettél fel szállítási címet");
+                    } else {
+                        textViewAdressChoice.setText("Válasz egy Szállítási címet:");
+                    }
                     AddressAdapter adapter = new AddressAdapter();
                     listViewchooseAddress.setAdapter(adapter);
                     break;

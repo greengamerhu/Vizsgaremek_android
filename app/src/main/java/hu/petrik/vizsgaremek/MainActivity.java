@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
-    private TextView textViewToolBarTitle;
+    public TextView textViewToolBarTitle;
 
     private ActionBarDrawerToggle toggle;
     private FrameLayout frameLayout;
@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
                         RequestTask task1 = new RequestTask(logoutUrl, "DELETE");
 
                         task1.execute();
+                        break;
 
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
@@ -127,6 +128,23 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fragmentfade_in, R.anim.fragmentslide_out)
                     .replace(R.id.fragmentContainer, new MenuFragment()).commit();
             textViewToolBarTitle.setText("Menü");
+            return;
+        }
+        if (currentFragment instanceof ChooseAddressFragment) {
+            getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fragmentfade_in, R.anim.fragmentslide_out)
+                    .replace(R.id.fragmentContainer, new cartItemsFragment()).commit();
+            textViewToolBarTitle.setText("Kosár");
+            return;
+        }
+        if(currentFragment instanceof placeOrderFragment) {
+            getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fragmentfade_in, R.anim.fragmentslide_out)
+                    .replace(R.id.fragmentContainer, new ChooseAddressFragment()).commit();
+            textViewToolBarTitle.setText("Válassz");
+            return;
+        }
+        if(currentFragment instanceof  Add_addressFragment) {
+            getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fragmentfade_in, R.anim.fragmentslide_out)
+                    .replace(R.id.fragmentContainer, new ListAddress()).commit();
             return;
         }
 

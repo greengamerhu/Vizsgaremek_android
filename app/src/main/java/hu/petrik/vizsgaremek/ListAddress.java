@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.google.android.material.button.MaterialButton;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.pranavpandey.android.dynamic.toasts.DynamicToast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,7 +47,10 @@ public class ListAddress extends Fragment {
         buttonNewAdress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if(addressList.size() >= 3) {
+                    DynamicToast.makeWarning(getActivity(), "Már felvettél három szállítási címet").show();
+                    return;
+                }
                 getFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragmentContainer, new  Add_addressFragment())
@@ -190,6 +194,14 @@ public class ListAddress extends Fragment {
                 case "DELETE":
                     RequestTask task = new RequestTask(url, "GET");
                     task.execute();
+                    if(response.getResponseCode() == 200) {
+                        DynamicToast.makeSuccess(getActivity(), "Cím törölve").show();
+
+                    } else {
+                        DynamicToast.makeError(getActivity(), "Cím törlése sikertelen").show();
+
+                    }
+
                     break;
             }
 
