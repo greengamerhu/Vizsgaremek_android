@@ -8,6 +8,12 @@
     android:gravity="center"
     tools:context=".MenuItemFragment">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,7 +30,7 @@
             android:layout_gravity="center">
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="400px"
+                android:layout_height="600px"
 
                 android:id="@+id/imageViewShowItemImg"
                 android:layout_gravity="center"/>
@@ -110,6 +116,7 @@
 
     </androidx.cardview.widget.CardView>
 
+    </ScrollView>
 
 
 
