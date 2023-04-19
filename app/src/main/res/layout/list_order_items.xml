@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    app:cardBackgroundColor="@color/grey2"
+    app:cardCornerRadius="10dp"
+    app:contentPadding="10dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:gravity="center">
+
+
+            <TextView
+                android:id="@+id/textViewOrderItemDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rendelés: 2023-04-18 21:19:28"
+                android:textColor="@color/purple"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+
+
+
+        <TextView
+            android:id="@+id/textViewOrderStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Státusz: Feldolgozás alatt"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textViewOrderId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Id: 23729d87-352c-44d6-9392-b420d91f7dc8"
+            android:textColor="@color/grey"
+            android:textAlignment="center"
+            android:textSize="12sp" />
+        <TextView
+            android:id="@+id/textViewOrderSummary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Összesen: 70300 Ft"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:textSize="16sp" />
+
+
+
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

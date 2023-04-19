@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OrdersFragment"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:id="@+id/textViewActiveOrder"
+        android:visibility="gone"
+        android:textSize="30dp"
+        android:text="Aktív Rendeléseid: " />
+    <ListView
+        android:id="@+id/listViewActiveOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10sp"
+
+        android:padding="30sp"
+        android:paddingTop="24dp"
+        android:visibility="gone"
+        tools:listitem="@layout/list_order_items" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:id="@+id/textViewNoOrders"
+        android:visibility="visible"
+        android:layout_gravity="center"
+        android:textSize="30dp"
+        android:text="Jelerleg Nincs aktív rendelésed " />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:id="@+id/textViewHistoryOrder"
+        android:textSize="30dp"
+        android:visibility="gone"
+
+        android:textColor="@color/white"
+        android:text="Korábbi Rendeléseid: " />
+    <ListView
+        android:id="@+id/listViewHistoryOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10sp"
+        android:padding="30sp"
+        android:paddingTop="24dp"
+        android:visibility="gone"
+        tools:listitem="@layout/list_order_items" />
+</LinearLayout>

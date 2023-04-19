@@ -31,7 +31,7 @@ import java.util.List;
 
 
 public class ListAddress extends Fragment {
-    private String url = "http://10.0.2.2:3000/user-adress";
+    private String url = "http://10.0.2.2:3000/user-address";
     private List<Address> addressList = new ArrayList<>();
     private ListView listViewAdress;
     private MaterialButton buttonNewAdress;
@@ -86,7 +86,7 @@ public class ListAddress extends Fragment {
             TextView textViewiItemCity = view.findViewById(R.id.textViewItemCity);
             TextView textViewiItemPhone = view.findViewById(R.id.textViewItemPhone);
             ImageView imgaeViewDeleteAdress = view.findViewById(R.id.imgaeViewDeleteAdress);
-            String deleteUrl = "http://10.0.2.2:3000/user-adress/" + String.valueOf(actualAddress.getId());
+            String deleteUrl = "http://10.0.2.2:3000/user-address/" + String.valueOf(actualAddress.getId());
             Log.d("deleteUrl", "getView: " + deleteUrl);
             RequestTask task = new RequestTask(deleteUrl, "DELETE");
             textViewItemAdress.setText(actualAddress.getAddress());

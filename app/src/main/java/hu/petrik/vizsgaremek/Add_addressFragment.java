@@ -28,7 +28,7 @@ import java.util.Arrays;
 
 
 public class Add_addressFragment extends Fragment {
-    private String url = "http://10.0.2.2:3000/user-adress";
+    private String url = "http://10.0.2.2:3000/user-address";
 
     private EditText editTextAdressPostalCode;
     private EditText editTextAdressCity;

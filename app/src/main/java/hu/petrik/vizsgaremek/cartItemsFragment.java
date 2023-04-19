@@ -54,7 +54,6 @@ public class cartItemsFragment extends Fragment {
 
     }
     public void addTodb(CartItems cartItem) {
-        Log.d("cart", "" + cartItem.quantity);
         Gson gson = new Gson();
 
         RequestTask task = new RequestTask(url, "PATCH", gson.toJson(cartItem));

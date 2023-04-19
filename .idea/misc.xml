@@ -12,7 +12,10 @@
         <entry key="..\:/Users/rimoc/Desktop/Vizsgaremek/Vizsgaremek_android/app/src/main/res/drawable/ic_baseline_logout_24.xml" value="0.2415" />
         <entry key="..\:/Users/rimoc/Desktop/Vizsgaremek/Vizsgaremek_android/app/src/main/res/drawable/ic_baseline_shopping_cart_24.xml" value="0.2415" />
         <entry key="..\:/Users/rimoc/Desktop/Vizsgaremek/Vizsgaremek_android/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1935" />
+        <entry key="..\:/Users/rimoc/Desktop/Vizsgaremek/Vizsgaremek_android/app/src/main/res/drawable/ic_order_completed_svgrepo_com.xml" value="0.1265" />
         <entry key="..\:/Users/rimoc/Desktop/Vizsgaremek/Vizsgaremek_android/app/src/main/res/drawable/ic_password.xml" value="0.256" />
+        <entry key="..\:/Users/rimoc/Desktop/Vizsgaremek/Vizsgaremek_android/app/src/main/res/drawable/ic_profile_svgrepo_com.xml" value="0.1265" />
+        <entry key="..\:/Users/rimoc/Desktop/Vizsgaremek/Vizsgaremek_android/app/src/main/res/drawable/ic_shipping_fast_solid_svgrepo_com.xml" value="0.1265" />
         <entry key="..\:/Users/rimoc/Desktop/Vizsgaremek/Vizsgaremek_android/app/src/main/res/drawable/ic_shopping_cart_svgrepo_com.xml" value="0.2415" />
         <entry key="..\:/Users/rimoc/Desktop/Vizsgaremek/Vizsgaremek_android/app/src/main/res/drawable/rounded_textedit.xml" value="0.2225" />
         <entry key="..\:/Users/rimoc/Desktop/Vizsgaremek/Vizsgaremek_android/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
@@ -28,11 +31,13 @@
         <entry key="..\:/Users/rimoc/Desktop/Vizsgaremek/Vizsgaremek_android/app/src/main/res/layout/fragment_list_adress.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/rimoc/Desktop/Vizsgaremek/Vizsgaremek_android/app/src/main/res/layout/fragment_menu.xml" value="0.1" />
         <entry key="..\:/Users/rimoc/Desktop/Vizsgaremek/Vizsgaremek_android/app/src/main/res/layout/fragment_menu_item.xml" value="0.28072916666666664" />
+        <entry key="..\:/Users/rimoc/Desktop/Vizsgaremek/Vizsgaremek_android/app/src/main/res/layout/fragment_orders.xml" value="0.2" />
         <entry key="..\:/Users/rimoc/Desktop/Vizsgaremek/Vizsgaremek_android/app/src/main/res/layout/fragment_place_order.xml" value="0.25" />
         <entry key="..\:/Users/rimoc/Desktop/Vizsgaremek/Vizsgaremek_android/app/src/main/res/layout/fragment_test.xml" value="0.33" />
         <entry key="..\:/Users/rimoc/Desktop/Vizsgaremek/Vizsgaremek_android/app/src/main/res/layout/list_adress_items.xml" value="0.365625" />
         <entry key="..\:/Users/rimoc/Desktop/Vizsgaremek/Vizsgaremek_android/app/src/main/res/layout/list_cart_items.xml" value="0.25" />
         <entry key="..\:/Users/rimoc/Desktop/Vizsgaremek/Vizsgaremek_android/app/src/main/res/layout/list_menu_items.xml" value="0.365625" />
+        <entry key="..\:/Users/rimoc/Desktop/Vizsgaremek/Vizsgaremek_android/app/src/main/res/layout/list_order_items.xml" value="0.1" />
         <entry key="..\:/Users/rimoc/Desktop/Vizsgaremek/Vizsgaremek_android/app/src/main/res/layout/list_order_summary.xml" value="0.365625" />
         <entry key="..\:/Users/rimoc/Desktop/Vizsgaremek/Vizsgaremek_android/app/src/main/res/layout/splashscreen_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/rimoc/Desktop/Vizsgaremek/Vizsgaremek_android/app/src/main/res/menu/menu_items.xml" value="0.1" />

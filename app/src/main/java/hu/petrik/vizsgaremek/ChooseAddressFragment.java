@@ -32,7 +32,7 @@ import java.util.List;
 
 
 public class ChooseAddressFragment extends Fragment {
-    private String url = "http://10.0.2.2:3000/user-adress";
+    private String url = "http://10.0.2.2:3000/user-address";
     private ListView listViewchooseAddress;
     private List<Address> addressList = new ArrayList<>();
     private TextView textViewAdressChoice;

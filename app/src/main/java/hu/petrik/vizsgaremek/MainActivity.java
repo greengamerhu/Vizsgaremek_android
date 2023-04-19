@@ -71,12 +71,16 @@ public class MainActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new MenuFragment()).commit();
                         textViewToolBarTitle.setText("Menü");
                         imageViewCart.setVisibility(View.VISIBLE);
-
                         break;
                     case R.id.adressPage:
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new ListAddress()).commit();
                         imageViewCart.setVisibility(View.GONE);
                         textViewToolBarTitle.setText("Szállítási adatok");
+                        break;
+                    case R.id.ordersPage:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new OrdersFragment()).commit();
+                        imageViewCart.setVisibility(View.GONE);
+                        textViewToolBarTitle.setText("Rendelések");
                         break;
                     case R.id.logoutPage:
                         String logoutUrl = "http://10.0.2.2:3000/auth/logout";
