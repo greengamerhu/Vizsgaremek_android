@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -207,6 +208,7 @@ public class cartItemsFragment extends Fragment {
                 return;
             }
             if (response.getResponseCode() >= 400) {
+                converter = new GsonBuilder().registerTypeAdapter(ErrorFromServer.class, new ErrorFromServerDeserializer()).create();
                 ErrorFromServer error = converter.fromJson(response.getContent(), ErrorFromServer.class);
 
                 DialogBuilderHelper dialog = new DialogBuilderHelper(error, getActivity());
@@ -218,13 +220,16 @@ public class cartItemsFragment extends Fragment {
                     sumTotal = cartItemListHelper.getSumTotal();
                     cartItemsList.clear();
                     cartItemsList.addAll(cartItemListHelper.getshoppingCart());
+
+                    TextView textViewCartItemsCounter = getActivity().findViewById(R.id.textViewCartItemsCounter);
+                    textViewCartItemsCounter.setText(cartItemsList.size() + "");
+
                     if (cartItemsList.size() == 0){
                         buttonOrder.setVisibility(View.GONE);
                         listViewCart.setVisibility(View.GONE);
                         textViewEmptyCart.setVisibility(View.VISIBLE);
                         return;
                     }
-                    Log.d("cart", "" + sumTotal);
                     CartItemsAdapter adapter = new CartItemsAdapter();
                     listViewCart.setAdapter(adapter);
                     buttonOrder.setText("Megrendelés: "+ Integer.parseInt(cartItemListHelper.getSumTotal()) + " Ft");

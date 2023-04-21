@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.pranavpandey.android.dynamic.toasts.DynamicToast;
 
 import java.io.IOException;
@@ -146,6 +147,8 @@ public class Add_addressFragment extends Fragment {
             super.onPostExecute(response);
             Gson gson = new Gson();
             if (response.getResponseCode() >= 400) {
+                gson = new GsonBuilder().registerTypeAdapter(ErrorFromServer.class, new ErrorFromServerDeserializer()).create();
+
                 ErrorFromServer error = gson.fromJson(response.getContent(), ErrorFromServer.class);
 
                 DialogBuilderHelper dialog = new DialogBuilderHelper(error, getActivity());

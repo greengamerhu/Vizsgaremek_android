@@ -154,7 +154,14 @@ public class MenuItemFragment extends Fragment {
                         .replace(R.id.fragmentContainer, new MenuFragment()).commit();
                     if(response.getResponseCode() == 201) {
                         DynamicToast.makeSuccess(getActivity(), "Kosárba helyezve").show();
+                        TextView textViewCartItemsCounter = getActivity().findViewById(R.id.textViewCartItemsCounter);
+                        int number = Integer.parseInt((String) textViewCartItemsCounter.getText());
+
+                        textViewCartItemsCounter.setText(number +1 + "");
+                    } else {
+
                     }
+
                     break;
 
 

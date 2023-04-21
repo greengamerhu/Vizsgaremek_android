@@ -10,11 +10,7 @@
     tools:context=".MainActivity"
     >
 
-    <!--    <Button-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="Kijelentkezes"-->
-    <!--        android:id="@+id/buttonLogout"/>-->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -49,6 +45,14 @@
                 android:layout_marginRight="15dp"
                 android:id="@+id/imageViewCart"
                 />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="2"
+                android:textColor="@color/white"
+                android:layout_gravity="right"
+                android:id="@+id/textViewCartItemsCounter"/>
         </androidx.appcompat.widget.Toolbar>
 
         <FrameLayout

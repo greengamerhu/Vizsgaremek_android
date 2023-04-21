@@ -203,5 +203,4 @@
         app:backgroundTint="@null"
         app:cornerRadius="10dp" />
 
-
 </LinearLayout>

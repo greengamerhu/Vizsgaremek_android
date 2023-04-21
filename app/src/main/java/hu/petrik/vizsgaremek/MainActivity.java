@@ -44,8 +44,9 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle toggle;
     private FrameLayout frameLayout;
     private ImageView imageViewCart;
+    private TextView textViewCartItemsCounter;
 
-    private ListView listViewMenu;
+    private List<CartItems> cart = new ArrayList<>();
     private String url = "http://10.0.2.2:3000/menu";
 
     @Override
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         init();
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -71,15 +73,20 @@ public class MainActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new MenuFragment()).commit();
                         textViewToolBarTitle.setText("Menü");
                         imageViewCart.setVisibility(View.VISIBLE);
+                        textViewCartItemsCounter.setVisibility(View.VISIBLE);
                         break;
                     case R.id.adressPage:
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new ListAddress()).commit();
                         imageViewCart.setVisibility(View.GONE);
+                        textViewCartItemsCounter.setVisibility(View.GONE);
+
                         textViewToolBarTitle.setText("Szállítási adatok");
                         break;
                     case R.id.ordersPage:
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new OrdersFragment()).commit();
                         imageViewCart.setVisibility(View.GONE);
+                        textViewCartItemsCounter.setVisibility(View.GONE);
+
                         textViewToolBarTitle.setText("Rendelések");
                         break;
                     case R.id.logoutPage:
@@ -101,7 +108,8 @@ public class MainActivity extends AppCompatActivity {
                 textViewToolBarTitle.setText("Kosár");
             }
         });
-
+        RequestTask task1 = new RequestTask("http://10.0.2.2:3000/cart", "GET");
+        task1.execute();
 
 
     }
@@ -115,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
         frameLayout = findViewById(R.id.fragmentContainer);
         textViewToolBarTitle = findViewById(R.id.textViewToolBarTitle);
         imageViewCart = findViewById(R.id.imageViewCart);
+        textViewCartItemsCounter = findViewById(R.id.textViewCartItemsCounter);
 
         toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
                 R.string.Open, R.string.Closed);
@@ -178,6 +187,9 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences sharedPreferences = getSharedPreferences("Important", Context.MODE_PRIVATE);
             try {
                 switch (requestType) {
+                    case "GET":
+                        response = RequestHandler.get(requestUrl, sharedPreferences.getString("token", null));
+                        break;
                     case "DELETE":
                         response = RequestHandler.delete(requestUrl, sharedPreferences.getString("token", null));
                         break;
@@ -219,6 +231,12 @@ public class MainActivity extends AppCompatActivity {
                 dialog.createDialog().show();
             }
             switch (requestType) {
+                case "GET":
+                    CartItemListHelper cartItemListHelper = converter.fromJson(response.getContent(), CartItemListHelper.class);
+                    cart.clear();
+                    cart.addAll(cartItemListHelper.getshoppingCart());
+                    textViewCartItemsCounter.setText(cart.size() + "");
+                    break;
                 case "DELETE":
                     SharedPreferences sharedPreferences = getSharedPreferences("Important", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();

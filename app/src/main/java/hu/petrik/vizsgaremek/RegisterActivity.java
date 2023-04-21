@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 
@@ -156,8 +157,8 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             }
             if (response.getResponseCode() >= 400) {
+                gson = new GsonBuilder().registerTypeAdapter(ErrorFromServer.class, new ErrorFromServerDeserializer()).create();
                 ErrorFromServer error = gson.fromJson(response.getContent(), ErrorFromServer.class);
-
                 DialogBuilderHelper dialog = new DialogBuilderHelper(error, RegisterActivity.this);
                 dialog.createDialog().show();
                 Toast.makeText(RegisterActivity.this,

@@ -200,12 +200,13 @@ public class placeOrderFragment extends Fragment {
             }
             if (response.getResponseCode() >= 400) {
                 placeOrderProgress.setVisibility(View.GONE);
-
                 converter = new GsonBuilder().registerTypeAdapter(ErrorFromServer.class, new ErrorFromServerDeserializer()).create();
                 ErrorFromServer error = converter.fromJson(response.getContent(), ErrorFromServer.class);
 
                 DialogBuilderHelper dialog = new DialogBuilderHelper(error, getActivity());
                 dialog.createDialog().show();
+
+
                 DynamicToast.makeError(getActivity(), "Sikertelen Rendelés").show();
             }
             switch (requestType) {

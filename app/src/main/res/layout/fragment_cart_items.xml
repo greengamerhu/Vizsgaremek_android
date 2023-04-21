@@ -14,7 +14,8 @@
         android:dividerHeight="10sp"
         android:padding="30sp"
         android:paddingTop="24dp"
-        tools:listitem="@layout/list_cart_items" />
+        tools:listitem="@layout/list_cart_items"
+        />
 
     <TextView
         android:layout_width="match_parent"
