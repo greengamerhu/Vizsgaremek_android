@@ -39,7 +39,6 @@ public class SplashScreen extends AppCompatActivity {
         RequestTask task = new RequestTask("http://10.0.2.2:3000/user/profile", "GET");
         task.execute();
 
-        Log.d("response", "onCreate: " + responsecode);
     }
     private class RequestTask extends AsyncTask<Void, Void, Response> {
         String requestUrl;

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Vizsgaremek</string>
+    <string name="app_name">BiteMe Burger</string>
     <string name="nincs_m_g_fi_kod_regisztr_ci">Nincs még fiókod? <font color="#c222bf"> Regisztráció </font></string>
     <string name="Closed">closed </string>
     <string name="Open">open </string>

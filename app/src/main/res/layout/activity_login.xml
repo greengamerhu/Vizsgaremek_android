@@ -98,7 +98,6 @@
             android:hint="Add meg a jelszavadat"
             android:inputType="textPassword"
 
-            android:textAlignment="center"
             android:textColor="@color/white"
             android:textColorHint="@color/grey3" />
     </com.google.android.material.textfield.TextInputLayout>
