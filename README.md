@@ -18,8 +18,9 @@
 ## Telepítés
 Az alkalmazás müködéséhez kelleni fog a backend része amit itt találsz:
 https://github.com/greengamerhu/VizsgaRemek_BackEnd
+
 Emelett egy android studio vagy valami ami tud build-elni android alkalmazásokat
-Tesztelt készülékek amin a UI jól müködik
+Tesztelt készülékek amin a UI jól müködik Pixel 2, Pixel 4 XL
 
 
 
