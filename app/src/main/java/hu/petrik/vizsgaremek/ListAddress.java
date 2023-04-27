@@ -37,6 +37,8 @@ public class ListAddress extends Fragment {
     private MaterialButton buttonNewAdress;
     private TextView textVuewAddNewAddresspls;
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

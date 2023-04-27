@@ -2,6 +2,7 @@ package hu.petrik.vizsgaremek;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.pranavpandey.android.dynamic.toasts.DynamicToast;
 
 import java.io.IOException;
 
@@ -51,7 +53,6 @@ public class RegisterActivity extends AppCompatActivity {
                 String pw = editTextPw.getText().toString().trim();
                 String rePw = editTextRePw.getText().toString().trim();
                 String fullName = editTextFullName.getText().toString().trim();
-                // TODO: megirni a validációt
                 if (email.isEmpty()){
                     emailLayout.setError("Nem lehet üres");
                     return;
@@ -164,7 +165,7 @@ public class RegisterActivity extends AppCompatActivity {
                 Toast.makeText(RegisterActivity.this,
                         response.getContent(), Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(RegisterActivity.this, "Sikeres regisztráció", Toast.LENGTH_SHORT).show();
+                DynamicToast.makeSuccess(RegisterActivity.this,"Sikeres Regisztráció").show();
                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
             }

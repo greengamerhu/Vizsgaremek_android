@@ -1,10 +1,8 @@
 package hu.petrik.vizsgaremek;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
+
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
+
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -25,7 +23,6 @@ import com.google.gson.GsonBuilder;
 import com.pranavpandey.android.dynamic.toasts.DynamicToast;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 
 public class Add_addressFragment extends Fragment {

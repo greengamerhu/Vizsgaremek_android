@@ -14,15 +14,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,7 +29,6 @@ import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -64,7 +60,10 @@ public class MainActivity extends AppCompatActivity {
         init();
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-
+        /**
+         * Az oldal menünek az opcíói, ezzel kontrolálom még azt is hogy mikor mi jelenjen meg a
+         * felső toolbar-on, cím, kosár
+         */
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -101,6 +100,9 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+        /**
+         * A kosár megnyitásakor lekéri a szerverről az adatokat és megjeleníti
+         */
         imageViewCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -132,7 +134,9 @@ public class MainActivity extends AppCompatActivity {
         textViewToolBarTitle.setText("Menü");
 
     }
-
+    /**
+     * Az androidos visszagomgnak a megfelelő léptetése a fragmentek között
+     */
     @Override
     public void onBackPressed() {
 
@@ -163,7 +167,9 @@ public class MainActivity extends AppCompatActivity {
 
         super.onBackPressed();
     }
-
+    /**
+     * A szerverrel történő kommunikációhoz szükséges osztály
+     */
     private class RequestTask extends AsyncTask<Void, Void, Response> {
         String requestUrl;
         String requestType;
@@ -209,15 +215,21 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-//            progressBar.setVisibility(View.VISIBLE);
 
         }
 
+        /**
+         * Miután lefutott a kérés a szerver felé megkap egy response-t itt történik a hiba kezelés
+         * @param response The result of the operation computed by {@link #doInBackground}.
+         *
+         */
         @Override
         protected void onPostExecute(Response response) {
             super.onPostExecute(response);
-//            progressBar.setVisibility(View.GONE);
             Gson converter = new Gson();
+            /**
+             * Hiba kezelés
+             */
             if (response == null) {
                 DialogBuilderHelper builderHelper = new DialogBuilderHelper(MainActivity.this);
                 Dialog dialog = builderHelper.createServerErrorDialog();
@@ -232,15 +244,20 @@ public class MainActivity extends AppCompatActivity {
             }
             switch (requestType) {
                 case "GET":
+                    /**
+                     *  a  kosár adatainak lekérdezése
+                     */
                     CartItemListHelper cartItemListHelper = converter.fromJson(response.getContent(), CartItemListHelper.class);
                     cart.clear();
                     cart.addAll(cartItemListHelper.getshoppingCart());
                     textViewCartItemsCounter.setText(cart.size() + "");
                     break;
                 case "DELETE":
+                    /**
+                     * Token törlése a tároloból ha kijelentkezik a user
+                     */
                     SharedPreferences sharedPreferences = getSharedPreferences("Important", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    Log.d("token", "onPostExecute: " + sharedPreferences.getString("token", null));
                     editor.remove("token");
                     editor.apply();
                     Intent intent = new Intent(MainActivity.this, LoginActivity.class);

@@ -77,14 +77,12 @@ public class MenuFragment extends Fragment {
         textViewToolBarTitle = getActivity().findViewById(R.id.textViewToolBarTitle);
         textViewToolBarTitle.setText("Menü");
         listViewMenu = view.findViewById(R.id.listViewMenu);
-
     }
 
     private class MenuAdapter extends ArrayAdapter<Menu> {
 
         public MenuAdapter() {
             super(listViewMenu.getContext(), R.layout.list_menu_items, menuList);
-
 
         }
 
@@ -101,9 +99,7 @@ public class MenuFragment extends Fragment {
             TextView textViewPrice = view.findViewById(R.id.textViewItemPrice);
             ImageView imageViewListMenuItems = view.findViewById(R.id.imageViewListMenuItems);
 
-            Log.d("MenuAdapter", "Title: " + actualMenu.getFood_name());
-            Log.d("MenuAdapter", "Description: " + actualMenu.getFood_description());
-            Log.d("MenuAdapter", "Price: " + actualMenu.getFood_price());
+
 
             Picasso.get().load("http://10.0.2.2:3000/burgers/" + actualMenu.getFood_image()).into(imageViewListMenuItems);
             textViewTitle.setText(actualMenu.getFood_name());
@@ -157,7 +153,6 @@ public class MenuFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-//            progressBar.setVisibility(View.VISIBLE);
 
         }
 
