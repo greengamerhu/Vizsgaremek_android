@@ -53,6 +53,11 @@ public class ErrorFromServer {
         this.error = error;
     }
 }
+
+/**
+ * ez arra kell hogyha nem egy listát kapna a szervertől hibaüzenetként, hanem csak egy sima
+ * stringet vagy ha egyáltalán nem kap semmit
+ */
 class ErrorFromServerDeserializer implements JsonDeserializer<ErrorFromServer> {
     @Override
     public ErrorFromServer deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {

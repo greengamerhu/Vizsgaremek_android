@@ -124,7 +124,6 @@ public class MenuItemFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-//            progressBar.setVisibility(View.VISIBLE);
 
         }
 

@@ -83,6 +83,12 @@ public class placeOrderFragment extends Fragment {
         buttonPlaceOrder = view.findViewById(R.id.buttonPlaceOrder);
         placeOrderProgress = view.findViewById(R.id.placeOrderProgress);
     }
+
+    /**
+     * A listviewnak a scrollozhatóságát szünteti meg és úgy állítja be az mértét az
+     * itemek mennyiségéhez igazítja
+     * @param listView
+     */
     public static void setListViewHeightBasedOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
         if (listAdapter == null)

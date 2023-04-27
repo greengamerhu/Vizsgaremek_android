@@ -21,6 +21,10 @@ public class DialogBuilderHelper {
         this.currentActivity = currentActivity;
     }
 
+    /**
+     * Az megkapott szerver üzenetet alakítja át egy dialoggá ami egyedi
+     * @return dialog
+     */
     public Dialog createDialog() {
         Dialog dialog = new Dialog(currentActivity);
         dialog.setContentView(R.layout.customdialog);
@@ -50,7 +54,10 @@ public class DialogBuilderHelper {
         return dialog;
 
     }
-
+    /**
+     * egy általános hibaüzenet
+     * @return dialog
+     */
     public Dialog createServerErrorDialog() {
         Dialog dialog = new Dialog(currentActivity);
         dialog.setContentView(R.layout.customdialog);

@@ -81,7 +81,6 @@ public class ListAddress extends Fragment {
 
             View view = layoutInflater.inflate(R.layout.list_adress_items, null, false);
             Address actualAddress = addressList.get(position);
-            Log.d("deleteUrl", "getView: " + actualAddress.getId());
 
             TextView textViewItemAdress = view.findViewById(R.id.textViewItemAdress);
             TextView textViewItemPostalCode = view.findViewById(R.id.textViewItemPostalCode);
@@ -89,7 +88,6 @@ public class ListAddress extends Fragment {
             TextView textViewiItemPhone = view.findViewById(R.id.textViewItemPhone);
             ImageView imgaeViewDeleteAdress = view.findViewById(R.id.imgaeViewDeleteAdress);
             String deleteUrl = "http://10.0.2.2:3000/user-address/" + String.valueOf(actualAddress.getId());
-            Log.d("deleteUrl", "getView: " + deleteUrl);
             RequestTask task = new RequestTask(deleteUrl, "DELETE");
             textViewItemAdress.setText(actualAddress.getAddress());
             textViewItemPostalCode.setText(String.valueOf(actualAddress.getPostalCode()));

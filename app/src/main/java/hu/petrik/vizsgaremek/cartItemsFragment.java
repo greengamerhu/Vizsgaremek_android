@@ -54,6 +54,11 @@ public class cartItemsFragment extends Fragment {
         textViewEmptyCart = view.findViewById(R.id.textViewEmptyCart);
 
     }
+
+    /**
+     * A módosított mennyiséget update-li az adatbázisban
+     * @param cartItem a módosított a mennyisége az adott kosár itemnek
+     */
     public void addTodb(CartItems cartItem) {
         Gson gson = new Gson();
 
@@ -193,7 +198,6 @@ public class cartItemsFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-//            progressBar.setVisibility(View.VISIBLE);
 
         }
 

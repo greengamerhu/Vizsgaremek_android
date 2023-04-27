@@ -190,7 +190,9 @@ public class OrdersFragment extends Fragment {
                     OrderListHelper orderListHelper = converter.fromJson(response.getContent(), OrderListHelper.class);
                     historyOrdersList.addAll(orderListHelper.getOrderHistory());
 
-
+                    /**
+                     * Ez az aktuális / korábbi / illletve ha nincs rendelés mi jelenjen meg
+                     */
 
                     activeOrder = orderListHelper.getActiveOrder();
                     if(activeOrder != null) {
@@ -204,7 +206,6 @@ public class OrdersFragment extends Fragment {
                         textViewNoOrders.setVisibility(View.VISIBLE);
                         return;
                     }
-
 
                     if(historyOrdersList.size() !=0) {
                         textViewNoOrders.setVisibility(View.GONE);
