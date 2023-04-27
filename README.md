@@ -14,6 +14,8 @@
 - rendelés leadása
 - aktív rendelések megtekintése, és legutobbi rendelések megtekintése
 
+## Fejlesztői dokumentáció:
+https://40e24a84-92f7-466a-80f0-0a4fd89bc82a.mynotice.io/
 
 ## Telepítés
 Az alkalmazás müködéséhez kelleni fog a backend része amit itt találsz:
