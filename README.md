@@ -1,4 +1,4 @@
-# BiteMe Hamburger App
+# BiteMe Burger App
 ## Vizsga Remek projekt
 
 
