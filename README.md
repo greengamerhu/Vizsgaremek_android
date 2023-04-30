@@ -17,6 +17,10 @@
 ## Fejlesztői dokumentáció:
 https://bitemeburgerappdocs.mynotice.io/
 
+## A Felhasználói Dokumentáció
+[BiteMe Burger manual.docx](https://github.com/greengamerhu/Vizsgaremek_android/blob/master/BiteMe%20Burger%20manual.docx)
+
+
 ## Telepítés
 Az alkalmazás müködéséhez kelleni fog a backend része amit itt találsz:
 https://github.com/greengamerhu/VizsgaRemek_BackEnd
